@@ -30,6 +30,12 @@
         <activity
             android:name=".activity.CreateEmployeeActivity">
         </activity>
+        <activity
+            android:name=".activity.DepartmentListActivity">
+        </activity>
+        <activity
+            android:name=".activity.EmployeeDetailActivity">
+        </activity>
 
     </application>
 
