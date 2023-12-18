@@ -79,8 +79,8 @@ public class EmployeeListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Open CreateEmployeeActivity to create a new employee
-//                Intent intent = new Intent(EmployeeListActivity.this, CreateEmployeeActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(EmployeeListActivity.this, CreateEmployeeActivity.class);
+                startActivity(intent);
             }
         });
 
