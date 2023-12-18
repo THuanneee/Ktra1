@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.levi.employeemanager.R;
+import com.levi.employeemanager.database.DataManager;
 import com.levi.employeemanager.models.EmployeeModel;
 
 public class CreateEmployeeActivity extends AppCompatActivity {
@@ -41,20 +43,36 @@ public class CreateEmployeeActivity extends AppCompatActivity {
     }
 
     private void saveEmployee() {
-        // Get the data from the EditText fields
+        // Lấy dữ liệu từ các trường EditText
         String name = editTextEmployeeName.getText().toString();
         String departmentId = editTextDepartmentId.getText().toString();
         String image = editTextImage.getText().toString();
         String sdt = editTextSdt.getText().toString();
         String email = editTextEmail.getText().toString();
 
-        // Create a new EmployeeModel instance with the entered data
+        // Tạo một đối tượng EmployeeModel mới với dữ liệu đã nhập
         EmployeeModel newEmployee = new EmployeeModel(null, name, departmentId, image, sdt, email);
 
-        // Add your logic to save the new employee to the database or perform other actions
-        // ...
+        // Khởi tạo DataManager và mở cơ sở dữ liệu
+        DataManager dataManager = new DataManager(this);
+        dataManager.open();
 
-        // Close the activity after saving
-        finish();
+        // Gọi phương thức thêm nhân viên vào cơ sở dữ liệu
+        long result = dataManager.addEmployee(newEmployee);
+
+        // Đóng cơ sở dữ liệu và kiểm tra kết quả
+        dataManager.close();
+        if (result != -1) {
+            // Nếu thêm thành công, thực hiện các hành động khác nếu cần
+            // ...
+            Toast.makeText(this, "Thêm nhân viên thành công", Toast.LENGTH_SHORT).show();
+
+            // Đóng activity sau khi lưu
+            finish();
+        } else {
+            Toast.makeText(this, "Lỗi khi thêm nhân viên", Toast.LENGTH_SHORT).show();
+
+            // Hiển thị thông báo lỗi hoặc log lỗi nếu cần
+        }
     }
 }
