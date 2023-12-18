@@ -1,6 +1,8 @@
 package com.levi.employeemanager.models;
 
-public class EmployeeModel {
+import java.io.Serializable;
+
+public class EmployeeModel implements Serializable {
     String id;
     String name;
     String departmentId;
@@ -65,4 +67,5 @@ public class EmployeeModel {
 
     String sdt;
     String email;
+
 }

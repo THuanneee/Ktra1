@@ -1,5 +1,6 @@
 package com.levi.employeemanager.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.levi.employeemanager.R;
+import com.levi.employeemanager.models.EmployeeModel;
 
 public class EmployeeDetailActivity extends AppCompatActivity {
 
@@ -58,17 +60,26 @@ public class EmployeeDetailActivity extends AppCompatActivity {
     }
 
     private void loadEmployeeDetails() {
-        // Get employee details from the intent or another source
-        // Example: Intent intent = getIntent();
-        // EmployeeModel employee = (EmployeeModel) intent.getSerializableExtra("employee");
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
 
-        // Update the TextViews with employee details
-        // Example:
-        // textViewEmployeeId.setText("Mã Nhân Viên: " + employee.getId());
-        // textViewEmployeeName.setText("Tên Nhân Viên: " + employee.getName());
-        // textViewEmployeeDepartment.setText("Phòng Ban: " + employee.getDepartmentId());
-        // textViewEmployeeImage.setText("Hình Ảnh: " + employee.getImage());
-        // textViewEmployeeSdt.setText("Số Điện Thoại: " + employee.getSdt());
-        // textViewEmployeeEmail.setText("Email: " + employee.getEmail());
+        if (bundle != null) {
+            EmployeeModel employee = (EmployeeModel) bundle.getSerializable("employee");
+
+            // Kiểm tra null trước khi sử dụng dữ liệu
+            if (employee != null) {
+                textViewEmployeeId.setText("Mã Nhân Viên: " + employee.getId());
+                textViewEmployeeName.setText("Tên Nhân Viên: " + employee.getName());
+                textViewEmployeeDepartment.setText("Phòng Ban: " + employee.getDepartmentId());
+                textViewEmployeeImage.setText("Hình Ảnh: " + employee.getImage());
+                textViewEmployeeSdt.setText("Số Điện Thoại: " + employee.getSdt());
+                textViewEmployeeEmail.setText("Email: " + employee.getEmail());
+            } else {
+                // Xử lý trường hợp employee là null
+            }
+        } else {
+            // Xử lý trường hợp bundle là null
+        }
     }
+
 }
