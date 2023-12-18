@@ -2,13 +2,18 @@ package com.levi.employeemanager.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.levi.employeemanager.R;
+
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -43,4 +48,28 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+
+        if (itemId == R.id.menu_about) {
+            // Add logic to handle "About" option
+            startActivity(new Intent(this, AboutActivity.class));
+            return true;
+        } else if (itemId == R.id.menu_exit) {
+            // Add logic to handle "Exit" option
+            finish();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
 }
