@@ -42,6 +42,13 @@
         <activity
             android:name=".activity.HomeActivity">
         </activity>
+        <activity android:name=".activity.AboutActivity"
+            android:label="About"
+            android:parentActivityName=".activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.HomeActivity" />
+        </activity>
 
 
     </application>
