@@ -27,6 +27,10 @@
         <activity
             android:name=".activity.EmployeeListActivity">
         </activity>
+        <activity
+            android:name=".activity.CreateEmployeeActivity">
+        </activity>
+
     </application>
 
 </manifest>
