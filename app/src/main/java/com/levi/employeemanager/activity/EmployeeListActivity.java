@@ -47,7 +47,7 @@ public class EmployeeListActivity extends AppCompatActivity {
                     LayoutInflater inflater = LayoutInflater.from(getContext());
                     convertView = inflater.inflate(R.layout.list_item_employee, parent, false);
                 }
-                
+
                 // Populate the item view with employee data
                 EmployeeModel employee = getItem(position);
 
@@ -55,6 +55,8 @@ public class EmployeeListActivity extends AppCompatActivity {
                 TextView textViewEmployeeCode = convertView.findViewById(R.id.textViewEmployeeCode);
                 TextView textViewEmployeeName = convertView.findViewById(R.id.textViewEmployeeName);
                 TextView textViewEmployeeDepartment = convertView.findViewById(R.id.textViewEmployeeClassification);
+                Button buttonDeleteEmployee = convertView.findViewById(R.id.buttonDeleteEmployee);
+
 
                 // Set the data for each view
                 // (Assuming you have appropriate methods in EmployeeModel to get the data)
@@ -63,7 +65,22 @@ public class EmployeeListActivity extends AppCompatActivity {
                 textViewEmployeeCode.setText("Mã: " + employee.getId());
                 textViewEmployeeName.setText("Tên: " + employee.getName());
                 textViewEmployeeDepartment.setText("Phòng ban: " + employee.getDepartmentId());
+                buttonDeleteEmployee.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        EmployeeModel selectedEmployee = getItem(position);
 
+                        // Delete the employee from the database
+                        DataManager dataManager = new DataManager(EmployeeListActivity.this);
+                        dataManager.open();
+                        dataManager.deleteEmployee(selectedEmployee.getId());
+                        dataManager.close();
+
+                        // Remove the employee from the list and refresh the adapter
+                        remove(selectedEmployee);
+                        notifyDataSetChanged();
+                    }
+                });
                 return convertView;
             }
         };
