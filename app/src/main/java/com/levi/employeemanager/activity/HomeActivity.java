@@ -65,7 +65,7 @@ public class HomeActivity extends AppCompatActivity {
             return true;
         } else if (itemId == R.id.menu_exit) {
             // Add logic to handle "Exit" option
-            finish();
+            finishAffinity(); // Đóng
             return true;
         } else {
             return super.onOptionsItemSelected(item);
