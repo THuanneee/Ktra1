@@ -3,23 +3,36 @@ package com.levi.employeemanager.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
+
 import com.levi.employeemanager.R;
 
-public class AboutActivity extends AppCompatActivity implements OnMapReadyCallback {
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
-    private MapView mapView;
+import org.osmdroid.api.IMapController;
+import org.osmdroid.config.Configuration;
+import org.osmdroid.events.MapEventsReceiver;
+import org.osmdroid.views.MapView;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.overlay.ItemizedIconOverlay;
+import org.osmdroid.views.overlay.MapEventsOverlay;
+import org.osmdroid.views.overlay.OverlayItem;
+import java.util.ArrayList;
+
+public class AboutActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,9 +40,19 @@ public class AboutActivity extends AppCompatActivity implements OnMapReadyCallba
         setContentView(R.layout.activity_about);
 
         TextView phoneTextView = findViewById(R.id.phoneTextView);
-        mapView = findViewById(R.id.mapView);
-        mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(this);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        Configuration.getInstance().load(getApplicationContext(), PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
+        MapView mapView = findViewById(R.id.mapView);
+        IMapController mapController = mapView.getController();
+        GeoPoint startPoint = new GeoPoint(10.738069280747185, 106.67780687036539); // Replace with your desired coordinates
+        mapController.setCenter(startPoint);
+        mapController.setZoom(18);
+        addMarker(mapView, startPoint, "Marker Title", "Marker Description");
 
         phoneTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,34 +65,45 @@ public class AboutActivity extends AppCompatActivity implements OnMapReadyCallba
         });
     }
     @Override
-    public void onMapReady(GoogleMap googleMap) {
-        // Đặt vị trí và marker tại Trường ĐH Công nghệ Sài Gòn
-        LatLng universityLatLng = new LatLng(10.768914, 106.682142); // Thay thế với tọa độ thực tế
-        googleMap.addMarker(new MarkerOptions().position(universityLatLng).title("Trường ĐH Công nghệ Sài Gòn"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(universityLatLng, 15)); // Thay đổi level zoom tùy ý
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        mapView.onResume();
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
+            // Xử lý sự kiện khi nút quay lại được nhấn
+            finish();
+            return true;
+        }
+        else if (itemId == R.id.menu_about) {
+            // Add logic to handle "About" option
+
+            return true;
+        } else if (itemId == R.id.menu_exit) {
+            // Add logic to handle "Exit" option
+            finishAffinity(); // Đóng
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mapView.onPause();
+private void addMarker(MapView mapView, GeoPoint position, String title, String snippet) {
+        // Create a list to hold the OverlayItems
+        ArrayList<OverlayItem> items = new ArrayList<>();
+        OverlayItem marker = new OverlayItem(title, snippet, position);
+        items.add(marker);
+
+        // Create an ItemizedIconOverlay to display the marker
+        ItemizedIconOverlay<OverlayItem> overlay = new ItemizedIconOverlay<>(items,
+                getResources().getDrawable(android.R.drawable.star_big_on), null, mapView.getContext());
+
+        // Add the overlay to the map
+        mapView.getOverlays().add(overlay);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mapView.onDestroy();
-    }
-
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
-        mapView.onLowMemory();
-    }
 }
