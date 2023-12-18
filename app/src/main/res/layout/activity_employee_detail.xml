@@ -2,55 +2,74 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textViewEmployeeId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mã Nhân Viên: " />
-
-    <TextView
-        android:id="@+id/textViewEmployeeName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tên Nhân Viên: " />
-
-    <TextView
-        android:id="@+id/textViewEmployeeDepartment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Phòng Ban: " />
-
-    <TextView
-        android:id="@+id/textViewEmployeeImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hình Ảnh: " />
-
-    <TextView
-        android:id="@+id/textViewEmployeeSdt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Số Điện Thoại: " />
-
-    <TextView
-        android:id="@+id/textViewEmployeeEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email: " />
-
-    <Button
-        android:id="@+id/buttonAddEmployee"
+    <!-- AppBar / Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Thêm Nhân Viên" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="?attr/actionBarTheme"
+        android:popupTheme="?attr/actionBarPopupTheme"
+        android:contentInsetStart="0dp"
+        app:title="Chi tiết nhân viên"
+        android:contentInsetLeft="0dp"/>
 
-    <Button
-        android:id="@+id/buttonEditEmployee"
+    <!-- Content View -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sửa Thông Tin Nhân Viên" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
 
+        <TextView
+            android:id="@+id/textViewEmployeeId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mã Nhân Viên: " />
+
+        <TextView
+            android:id="@+id/textViewEmployeeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tên Nhân Viên: " />
+
+        <TextView
+            android:id="@+id/textViewEmployeeDepartment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phòng Ban: " />
+
+        <TextView
+            android:id="@+id/textViewEmployeeImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hình Ảnh: " />
+
+        <TextView
+            android:id="@+id/textViewEmployeeSdt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Số Điện Thoại: " />
+
+        <TextView
+            android:id="@+id/textViewEmployeeEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email: " />
+
+        <Button
+            android:id="@+id/buttonAddEmployee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thêm Nhân Viên" />
+
+        <Button
+            android:id="@+id/buttonEditEmployee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sửa Thông Tin Nhân Viên" />
+    </LinearLayout>
 </LinearLayout>

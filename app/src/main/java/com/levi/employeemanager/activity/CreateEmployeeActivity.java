@@ -1,13 +1,19 @@
 package com.levi.employeemanager.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.levi.employeemanager.R;
 import com.levi.employeemanager.database.DataManager;
@@ -34,6 +40,10 @@ public class CreateEmployeeActivity extends AppCompatActivity {
         editTextEmail = findViewById(R.id.editTextEmail);
         buttonSaveEmployee = findViewById(R.id.buttonSaveEmployee);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         buttonSaveEmployee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,6 +59,11 @@ public class CreateEmployeeActivity extends AppCompatActivity {
         String image = editTextImage.getText().toString();
         String sdt = editTextSdt.getText().toString();
         String email = editTextEmail.getText().toString();
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         // Tạo một đối tượng EmployeeModel mới với dữ liệu đã nhập
         EmployeeModel newEmployee = new EmployeeModel(null, name, departmentId, image, sdt, email);
@@ -73,6 +88,33 @@ public class CreateEmployeeActivity extends AppCompatActivity {
             Toast.makeText(this, "Lỗi khi thêm nhân viên", Toast.LENGTH_SHORT).show();
 
             // Hiển thị thông báo lỗi hoặc log lỗi nếu cần
+        }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
+            // Xử lý sự kiện khi nút quay lại được nhấn
+            finish();
+            return true;
+        }
+        else if (itemId == R.id.menu_about) {
+            // Add logic to handle "About" option
+            startActivity(new Intent(this, AboutActivity.class));
+            return true;
+        } else if (itemId == R.id.menu_exit) {
+            // Add logic to handle "Exit" option
+            finishAffinity(); // Đóng
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 }

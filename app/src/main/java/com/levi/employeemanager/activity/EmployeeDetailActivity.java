@@ -3,12 +3,17 @@ package com.levi.employeemanager.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.levi.employeemanager.R;
 import com.levi.employeemanager.models.EmployeeModel;
@@ -38,12 +43,17 @@ public class EmployeeDetailActivity extends AppCompatActivity {
         buttonAddEmployee = findViewById(R.id.buttonAddEmployee);
         buttonEditEmployee = findViewById(R.id.buttonEditEmployee);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         // Set click listener for "Thêm Nhân Viên" button
         buttonAddEmployee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Add logic to create a new employee
-                // ...
+                Intent intent = new Intent(EmployeeDetailActivity.this, CreateEmployeeActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -91,6 +101,33 @@ public class EmployeeDetailActivity extends AppCompatActivity {
             }
         } else {
             // Xử lý trường hợp bundle là null
+        }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
+            // Xử lý sự kiện khi nút quay lại được nhấn
+            finish();
+            return true;
+        }
+        else if (itemId == R.id.menu_about) {
+            // Add logic to handle "About" option
+            startActivity(new Intent(this, AboutActivity.class));
+            return true;
+        } else if (itemId == R.id.menu_exit) {
+            // Add logic to handle "Exit" option
+            finishAffinity(); // Đóng
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 

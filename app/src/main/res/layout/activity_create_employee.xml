@@ -2,43 +2,62 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/editTextEmployeeName"
+    <!-- AppBar / Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Tên Nhân Viên"/>
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:title="Tạo nhân viên"
+        android:theme="?attr/actionBarTheme"
+        android:popupTheme="?attr/actionBarPopupTheme"
+        android:contentInsetStart="0dp"
+        android:contentInsetLeft="0dp"/>
 
-    <EditText
-        android:id="@+id/editTextDepartmentId"
+    <!-- Content View -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="ID Phòng Ban"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <EditText
-        android:id="@+id/editTextImage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Đường dẫn Hình Ảnh"/>
+        <EditText
+            android:id="@+id/editTextEmployeeName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tên Nhân Viên"/>
 
-    <EditText
-        android:id="@+id/editTextSdt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Số Điện Thoại"/>
+        <EditText
+            android:id="@+id/editTextDepartmentId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ID Phòng Ban"/>
 
-    <EditText
-        android:id="@+id/editTextEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email"/>
+        <EditText
+            android:id="@+id/editTextImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Đường dẫn Hình Ảnh"/>
 
-    <Button
-        android:id="@+id/buttonSaveEmployee"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Lưu Nhân Viên"/>
+        <EditText
+            android:id="@+id/editTextSdt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Số Điện Thoại"/>
 
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"/>
+
+        <Button
+            android:id="@+id/buttonSaveEmployee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lưu Nhân Viên"/>
+    </LinearLayout>
 </LinearLayout>
