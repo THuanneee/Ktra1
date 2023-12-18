@@ -1,22 +1,48 @@
 <!-- res/layout/activity_home.xml -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="16dp">
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/buttonShowEmployeeList"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hiển Thị Danh Sách Nhân Viên" />
+      >
 
-    <Button
-        android:id="@+id/buttonShowDepartmentList"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Home"
+            android:background="?attr/colorPrimary"
+         />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Hiển Thị Danh Sách Phòng Ban" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp">
 
-</LinearLayout>
+        <!-- Your existing content -->
+
+        <Button
+            android:id="@+id/buttonShowEmployeeList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hiển Thị Danh Sách Nhân Viên" />
+
+        <Button
+            android:id="@+id/buttonShowDepartmentList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Hiển Thị Danh Sách Phòng Ban" />
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

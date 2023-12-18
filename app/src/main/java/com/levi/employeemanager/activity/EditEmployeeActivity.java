@@ -2,12 +2,17 @@ package com.levi.employeemanager.activity;// EditEmployeeActivity.java
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.levi.employeemanager.R;
 import com.levi.employeemanager.database.DataManager;
@@ -36,6 +41,11 @@ public class EditEmployeeActivity extends AppCompatActivity {
         editTextSdt = findViewById(R.id.editTextPhoneNumber);
         editTextEmail = findViewById(R.id.editTextEmail);
         buttonSaveChanges = findViewById(R.id.buttonSaveChanges);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         // Nhận dữ liệu nhân viên từ Intent
         Intent intent = getIntent();
@@ -82,5 +92,32 @@ public class EditEmployeeActivity extends AppCompatActivity {
 
         // Trở về màn hình trước đó
         finish();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
+            // Xử lý sự kiện khi nút quay lại được nhấn
+            finish();
+            return true;
+        }
+        else if (itemId == R.id.menu_about) {
+            // Add logic to handle "About" option
+            startActivity(new Intent(this, AboutActivity.class));
+            return true;
+        } else if (itemId == R.id.menu_exit) {
+            // Add logic to handle "Exit" option
+            finishAffinity(); // Đóng
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
     }
 }

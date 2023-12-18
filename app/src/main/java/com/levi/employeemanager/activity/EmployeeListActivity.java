@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,8 +23,9 @@ import com.levi.employeemanager.R;
 import com.levi.employeemanager.database.DataManager;
 import com.levi.employeemanager.models.EmployeeModel;
 
-import java.util.ArrayList;
 import java.util.List;
+import androidx.appcompat.widget.Toolbar;
+
 
 public class EmployeeListActivity extends AppCompatActivity {
 
@@ -34,7 +39,10 @@ public class EmployeeListActivity extends AppCompatActivity {
 
         ListView listViewEmployees = findViewById(R.id.listViewEmployees);
         Button buttonCreateEmployee = findViewById(R.id.buttonCreateEmployee);
-
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
         // Initialize your data source (employeeList) with actual data
@@ -135,5 +143,32 @@ public class EmployeeListActivity extends AppCompatActivity {
 
         // Close the database
         dataManager.close();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
+            // Xử lý sự kiện khi nút quay lại được nhấn
+            finish();
+            return true;
+        }
+        else if (itemId == R.id.menu_about) {
+            // Add logic to handle "About" option
+            startActivity(new Intent(this, AboutActivity.class));
+            return true;
+        } else if (itemId == R.id.menu_exit) {
+            // Add logic to handle "Exit" option
+            finishAffinity(); // Đóng
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
     }
 }

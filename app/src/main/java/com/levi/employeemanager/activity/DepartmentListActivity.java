@@ -1,6 +1,10 @@
 package com.levi.employeemanager.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -9,8 +13,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.levi.employeemanager.R;
 import com.levi.employeemanager.models.DepartmentModel;
@@ -29,6 +35,11 @@ public class DepartmentListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_department_list);
 
         ListView listViewDepartments = findViewById(R.id.listViewDepartments);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         // Initialize your data source (departmentList) with actual data
         departmentList = new ArrayList<>();
@@ -89,5 +100,32 @@ public class DepartmentListActivity extends AppCompatActivity {
 
         // Notify the adapter that the data has changed
         adapter.notifyDataSetChanged();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        if (itemId == android.R.id.home) {
+            // Xử lý sự kiện khi nút quay lại được nhấn
+            finish();
+            return true;
+        }
+        else if (itemId == R.id.menu_about) {
+            // Add logic to handle "About" option
+            startActivity(new Intent(this, AboutActivity.class));
+            return true;
+        } else if (itemId == R.id.menu_exit) {
+            // Add logic to handle "Exit" option
+            finishAffinity(); // Đóng
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
     }
 }
