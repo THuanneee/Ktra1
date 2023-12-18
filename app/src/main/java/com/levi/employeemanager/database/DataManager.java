@@ -1,5 +1,6 @@
 package com.levi.employeemanager.database;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -8,6 +9,9 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.levi.employeemanager.models.DepartmentModel;
 import com.levi.employeemanager.models.EmployeeModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DataManager {
     private SQLiteDatabase database;
@@ -23,6 +27,31 @@ public class DataManager {
 
     public void close() {
         dbHelper.close();
+    }
+
+    public List<EmployeeModel> getAllEmployees() {
+        List<EmployeeModel> employeeList = new ArrayList<>();
+
+        Cursor cursor = database.query(DatabaseHelper.TABLE_EMPLOYEE,
+                null, null, null, null, null, null);
+
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                @SuppressLint("Range") String id = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_ID));
+                @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME));
+                @SuppressLint("Range") String departmentId = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_DEPARTMENT_ID));
+                @SuppressLint("Range") String image = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_IMAGE));
+                @SuppressLint("Range") String sdt = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_SDT));
+                @SuppressLint("Range") String email = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_EMAIL));
+
+                EmployeeModel employee = new EmployeeModel(id, name, departmentId, image, sdt, email);
+                employeeList.add(employee);
+            }
+
+            cursor.close();
+        }
+
+        return employeeList;
     }
 
     // CRUD operations for Employee

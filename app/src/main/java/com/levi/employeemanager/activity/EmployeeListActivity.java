@@ -2,6 +2,7 @@ package com.levi.employeemanager.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.levi.employeemanager.R;
+import com.levi.employeemanager.database.DataManager;
 import com.levi.employeemanager.models.EmployeeModel;
 
 import java.util.ArrayList;
@@ -32,22 +34,27 @@ public class EmployeeListActivity extends AppCompatActivity {
         ListView listViewEmployees = findViewById(R.id.listViewEmployees);
         Button buttonCreateEmployee = findViewById(R.id.buttonCreateEmployee);
 
+
+
         // Initialize your data source (employeeList) with actual data
-        employeeList = new ArrayList<>();
+        loadEmployeeData();
 
         // Initialize the adapter with custom layout (list_item_employee)
         adapter = new ArrayAdapter<EmployeeModel>(this, R.layout.list_item_employee, employeeList) {
             @Override
             public View getView(int position, View convertView, android.view.ViewGroup parent) {
-                View view = super.getView(position, convertView, parent);
-
+                if (convertView == null) {
+                    LayoutInflater inflater = LayoutInflater.from(getContext());
+                    convertView = inflater.inflate(R.layout.list_item_employee, parent, false);
+                }
+                
                 // Populate the item view with employee data
                 EmployeeModel employee = getItem(position);
 
-                ImageView imageViewEmployee = view.findViewById(R.id.imageViewEmployee);
-                TextView textViewEmployeeCode = view.findViewById(R.id.textViewEmployeeCode);
-                TextView textViewEmployeeName = view.findViewById(R.id.textViewEmployeeName);
-                TextView textViewEmployeeDepartment = view.findViewById(R.id.textViewEmployeeClassification);
+                ImageView imageViewEmployee = convertView.findViewById(R.id.imageViewEmployee);
+                TextView textViewEmployeeCode = convertView.findViewById(R.id.textViewEmployeeCode);
+                TextView textViewEmployeeName = convertView.findViewById(R.id.textViewEmployeeName);
+                TextView textViewEmployeeDepartment = convertView.findViewById(R.id.textViewEmployeeClassification);
 
                 // Set the data for each view
                 // (Assuming you have appropriate methods in EmployeeModel to get the data)
@@ -57,7 +64,7 @@ public class EmployeeListActivity extends AppCompatActivity {
                 textViewEmployeeName.setText("Tên: " + employee.getName());
                 textViewEmployeeDepartment.setText("Phòng ban: " + employee.getDepartmentId());
 
-                return view;
+                return convertView;
             }
         };
 
@@ -89,5 +96,17 @@ public class EmployeeListActivity extends AppCompatActivity {
 
         // Notify the adapter that the data has changed
         adapter.notifyDataSetChanged();
+    }
+
+    private void loadEmployeeData() {
+        // Initialize DataManager and open the database
+        DataManager dataManager = new DataManager(this);
+        dataManager.open();
+
+        // Load employee data from the database
+        employeeList = dataManager.getAllEmployees();
+
+        // Close the database
+        dataManager.close();
     }
 }
