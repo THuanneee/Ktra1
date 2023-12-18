@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void startMainActivity() {
-        Intent intent = new Intent(this, EmployeeListActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
 //        finish(); // Optional: Close the LoginActivity after successful login
     }

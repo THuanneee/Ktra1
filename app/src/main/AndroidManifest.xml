@@ -39,6 +39,9 @@
         <activity
             android:name=".activity.DepartmentDetailActivity">
         </activity>
+        <activity
+            android:name=".activity.HomeActivity">
+        </activity>
 
 
     </application>
