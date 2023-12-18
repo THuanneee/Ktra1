@@ -36,6 +36,10 @@
         <activity
             android:name=".activity.EmployeeDetailActivity">
         </activity>
+        <activity
+            android:name=".activity.DepartmentDetailActivity">
+        </activity>
+
 
     </application>
 
