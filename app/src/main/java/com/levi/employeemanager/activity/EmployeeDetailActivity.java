@@ -2,6 +2,7 @@ package com.levi.employeemanager.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -50,10 +51,21 @@ public class EmployeeDetailActivity extends AppCompatActivity {
         buttonEditEmployee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Add logic to edit employee information
-                // ...
+                // Lấy thông tin nhân viên từ intent
+                EmployeeModel employee = (EmployeeModel) getIntent().getSerializableExtra("employee");
+
+                // Kiểm tra null trước khi mở màn hình chỉnh sửa
+                if (employee != null) {
+                    // Mở EditEmployeeActivity và truyền dữ liệu nhân viên
+                    Intent intent = new Intent(EmployeeDetailActivity.this, EditEmployeeActivity.class);
+                    intent.putExtra("employee", employee);
+                    startActivity(intent);
+                } else {
+                    // Xử lý trường hợp employee là null
+                }
             }
         });
+
 
         // Load employee details from intent or other source
         loadEmployeeDetails();
