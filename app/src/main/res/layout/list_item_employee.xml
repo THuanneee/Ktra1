@@ -3,17 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:focusable="false"
+    android:focusableInTouchMode="false"
     android:padding="16dp">
 
     <ImageView
         android:id="@+id/imageViewEmployee"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:contentDescription="@null"
         android:layout_marginEnd="16dp"/>
 
     <LinearLayout
         android:layout_width="0dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical">
@@ -23,11 +29,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mã: "
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textViewEmployeeName"
             android:layout_width="wrap_content"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:layout_height="wrap_content"
             android:text="Tên: "
             android:textStyle="bold"/>
@@ -36,6 +46,8 @@
             android:id="@+id/textViewEmployeeClassification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:text="Phân loại: "
             android:textStyle="bold"/>
     </LinearLayout>
@@ -43,6 +55,8 @@
     <Button
         android:id="@+id/buttonDeleteEmployee"
         android:layout_width="wrap_content"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:layout_height="wrap_content"
         android:text="Xóa"
         android:onClick="onDeleteButtonClick"/>

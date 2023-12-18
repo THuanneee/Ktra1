@@ -2,6 +2,7 @@ package com.levi.employeemanager.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -92,9 +93,18 @@ public class EmployeeListActivity extends AppCompatActivity {
         listViewEmployees.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Handle item click (e.g., show details)
+                Log.d("ListViewClick", "Item clicked at position: " + position);
+
                 EmployeeModel selectedEmployee = employeeList.get(position);
-                // Add your logic here
+                // Open EmployeeDetailActivity
+                Intent intent = new Intent(EmployeeListActivity.this, EmployeeDetailActivity.class);
+
+                // Sử dụng Bundle để truyền dữ liệu
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("employee", selectedEmployee);
+                intent.putExtras(bundle);
+
+                startActivity(intent);
             }
         });
 
