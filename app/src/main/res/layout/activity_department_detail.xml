@@ -1,0 +1,32 @@
+<!-- res/layout/activity_department_detail.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textViewDepartmentId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID: " />
+
+    <TextView
+        android:id="@+id/textViewDepartmentName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tên Phòng Ban: " />
+
+    <Button
+        android:id="@+id/buttonAddEmployee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thêm Nhân Viên" />
+
+    <Button
+        android:id="@+id/buttonEditDepartment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sửa Thông Tin Phòng Ban" />
+
+</LinearLayout>
