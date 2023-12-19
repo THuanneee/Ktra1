@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.levi.employeemanager.R;
+import com.levi.employeemanager.models.DepartmentModel;
+import com.levi.employeemanager.models.EmployeeModel;
 
 public class DepartmentDetailActivity extends AppCompatActivity {
 
@@ -43,8 +45,8 @@ public class DepartmentDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Add logic to navigate to the AddEmployeeActivity or other relevant screen
-//                Intent intent = new Intent(DepartmentDetailActivity.this, AddEmployeeActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(DepartmentDetailActivity.this, CreateDepartmentActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -55,6 +57,17 @@ public class DepartmentDetailActivity extends AppCompatActivity {
                 // Add logic to navigate to the EditDepartmentActivity or other relevant screen
 //                Intent intent = new Intent(DepartmentDetailActivity.this, EditDepartmentActivity.class);
 //                startActivity(intent);
+                DepartmentModel department = (DepartmentModel) getIntent().getSerializableExtra("department");
+
+                // Kiểm tra null trước khi mở màn hình chỉnh sửa
+                if (department != null) {
+                    // Mở EditEmployeeActivity và truyền dữ liệu nhân viên
+                    Intent intent = new Intent(DepartmentDetailActivity.this, EditDepartment.class);
+                    intent.putExtra("department", department);
+                    startActivity(intent);
+                } else {
+                    // Xử lý trường hợp employee là null
+                }
             }
         });
 
@@ -62,15 +75,26 @@ public class DepartmentDetailActivity extends AppCompatActivity {
         loadDepartmentDetails();
     }
 
-    private void loadDepartmentDetails() {
-        // Get department details from the intent or another source
-        // Example: Intent intent = getIntent();
-        // DepartmentModel department = (DepartmentModel) intent.getSerializableExtra("department");
 
-        // Update the TextViews with department details
-        // Example:
-        // textViewDepartmentId.setText("ID: " + department.getId());
-        // textViewDepartmentName.setText("Tên Phòng Ban: " + department.getName());
+
+    private void loadDepartmentDetails() {
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+        if (bundle != null) {
+            DepartmentModel department = (DepartmentModel) bundle.getSerializable("department");
+
+            // Kiểm tra null trước khi sử dụng dữ liệu
+            if (department != null) {
+                textViewDepartmentId.setText("ID: " + department.getId());
+                textViewDepartmentName.setText("Tên Phòng Ban: " + department.getName());
+
+            } else {
+                // Xử lý trường hợp employee là null
+            }
+        } else {
+            // Xử lý trường hợp bundle là null
+        }
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

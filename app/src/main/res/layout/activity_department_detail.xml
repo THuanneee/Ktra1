@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        app:title="Danh sách chi tiết phòng ban"
+        app:title="Chi tiết phòng ban"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:theme="?attr/actionBarTheme"
@@ -40,7 +40,7 @@
             android:id="@+id/buttonAddEmployee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Thêm Nhân Viên" />
+            android:text="Thêm Phòng ban" />
 
         <Button
             android:id="@+id/buttonEditDepartment"

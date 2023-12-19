@@ -2,6 +2,7 @@ package com.levi.employeemanager.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -107,7 +108,18 @@ public class DepartmentListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // Handle item click (e.g., show details)
                 DepartmentModel selectedDepartment = departmentList.get(position);
-                // Add your logic here
+                // Add your logic her
+                Log.d("ListViewClick", "Item clicked at position: " + position);
+
+                // Open EmployeeDetailActivity
+                Intent intent = new Intent(DepartmentListActivity.this, DepartmentDetailActivity.class);
+
+                // Sử dụng Bundle để truyền dữ liệu
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("department", selectedDepartment);
+                intent.putExtras(bundle);
+
+                startActivity(intent);
             }
         });
 
