@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,9 +29,13 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: Handle login logic here
-                // For simplicity, let's just start a new activity after login
-                startMainActivity();
+                if (editTextUsername.getText().toString().equals("admin") &&
+                        editTextPassword.getText().toString().equals("1234")
+                ) {
+                    startMainActivity();
+                } else {
+                    Toast.makeText(LoginActivity.this, "Tài khoản không hợp lệ", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -38,6 +43,5 @@ public class LoginActivity extends AppCompatActivity {
     private void startMainActivity() {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
-//        finish(); // Optional: Close the LoginActivity after successful login
     }
 }
