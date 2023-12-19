@@ -6,7 +6,7 @@ public class EmployeeModel implements Serializable {
     String id;
     String name;
     String departmentId;
-    String image;
+    byte[]  image;
 
     public String getId() {
         return id;
@@ -24,7 +24,7 @@ public class EmployeeModel implements Serializable {
         this.departmentId = departmentId;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[]  image) {
         this.image = image;
     }
 
@@ -44,7 +44,7 @@ public class EmployeeModel implements Serializable {
         return departmentId;
     }
 
-    public String getImage() {
+    public byte[]  getImage() {
         return image;
     }
 
@@ -56,7 +56,7 @@ public class EmployeeModel implements Serializable {
         return email;
     }
 
-    public EmployeeModel(String id, String name, String departmentId, String image, String sdt, String email) {
+    public EmployeeModel(String id, String name, String departmentId, byte[]  image, String sdt, String email) {
         this.id = id;
         this.name = name;
         this.departmentId = departmentId;

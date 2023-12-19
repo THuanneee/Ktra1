@@ -1,7 +1,13 @@
 package com.levi.employeemanager.activity;
 
+import static com.levi.employeemanager.activity.CreateEmployeeActivity.convertImageToByteArray;
+import static com.levi.employeemanager.activity.EmployeeDetailActivity.setImageFromByteArray;
+
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,7 +28,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.levi.employeemanager.R;
 import com.levi.employeemanager.database.DataManager;
 import com.levi.employeemanager.models.EmployeeModel;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.List;
 import androidx.appcompat.widget.Toolbar;
 
@@ -68,12 +76,7 @@ public class EmployeeListActivity extends AppCompatActivity {
                 TextView textViewEmployeeName = convertView.findViewById(R.id.textViewEmployeeName);
                 TextView textViewEmployeeDepartment = convertView.findViewById(R.id.textViewEmployeeClassification);
                 Button buttonDeleteEmployee = convertView.findViewById(R.id.buttonDeleteEmployee);
-
-
-                // Set the data for each view
-                // (Assuming you have appropriate methods in EmployeeModel to get the data)
-                // Example:
-                // imageViewEmployee.setImageResource(employee.getImage());
+                setImageFromByteArray(employee.getImage(), imageViewEmployee);
                 textViewEmployeeCode.setText("Mã: " + employee.getId());
                 textViewEmployeeName.setText("Tên: " + employee.getName());
                 textViewEmployeeDepartment.setText("Phòng ban: " + employee.getDepartmentId());
@@ -135,6 +138,19 @@ public class EmployeeListActivity extends AppCompatActivity {
         // Notify the adapter that the data has changed
         adapter.notifyDataSetChanged();
     }
+    private String getRealPathFromURI(Uri contentUri) {
+        String[] projection = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(contentUri, projection, null, null, null);
+        if (cursor == null) {
+            return contentUri.getPath(); // Trả về đường dẫn gốc nếu không thể truy cập thông tin từ MediaStore
+        } else {
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            String path = cursor.getString(column_index);
+            cursor.close();
+            return path;
+        }
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -174,11 +190,8 @@ public class EmployeeListActivity extends AppCompatActivity {
                 TextView textViewEmployeeDepartment = convertView.findViewById(R.id.textViewEmployeeClassification);
                 Button buttonDeleteEmployee = convertView.findViewById(R.id.buttonDeleteEmployee);
 
+                setImageFromByteArray(employee.getImage(), imageViewEmployee);
 
-                // Set the data for each view
-                // (Assuming you have appropriate methods in EmployeeModel to get the data)
-                // Example:
-                // imageViewEmployee.setImageResource(employee.getImage());
                 textViewEmployeeCode.setText("Mã: " + employee.getId());
                 textViewEmployeeName.setText("Tên: " + employee.getName());
                 textViewEmployeeDepartment.setText("Phòng ban: " + employee.getDepartmentId());
