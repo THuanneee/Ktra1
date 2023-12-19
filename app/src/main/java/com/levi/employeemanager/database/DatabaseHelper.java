@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "company.db";
+    private static final String DATABASE_NAME = "comp1any.db";
     private static final int DATABASE_VERSION = 1;
 
     // Table names
@@ -25,7 +25,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COLUMN_NAME + " TEXT,"
             + COLUMN_DEPARTMENT_ID + " TEXT,"
-            + COLUMN_IMAGE + " TEXT,"
+            + COLUMN_IMAGE + " BLOB,"
             + COLUMN_SDT + " TEXT,"
             + COLUMN_EMAIL + " TEXT"
             + ")";

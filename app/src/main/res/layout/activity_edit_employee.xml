@@ -54,14 +54,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Link Hình Ảnh"
+            android:text="Hình Ảnh"
             android:textStyle="bold"/>
-        <EditText
-            android:id="@+id/editTextImage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nhập link hình ảnh"
-            android:inputType="text"/>
+        <ImageView
+            android:id="@+id/imageViewEmployeeDetail"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/images"/>
 
         <!-- Input field for phone number -->
         <TextView
@@ -89,7 +89,12 @@
             android:hint="Nhập email"
             android:inputType="textEmailAddress"/>
 
-        <!-- Button to save changes -->
+        <Button
+            android:id="@+id/buttonPickImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Chọn ảnh"/>
+
         <Button
             android:id="@+id/buttonSaveChanges"
             android:layout_width="match_parent"

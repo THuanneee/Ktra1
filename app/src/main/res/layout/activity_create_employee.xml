@@ -37,12 +37,6 @@
             android:hint="ID Phòng Ban"/>
 
         <EditText
-            android:id="@+id/editTextImage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Đường dẫn Hình Ảnh"/>
-
-        <EditText
             android:id="@+id/editTextSdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,6 +47,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"/>
+
+        <ImageView
+            android:id="@+id/imageViewEmployee"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/images"/>
+
+
+        <Button
+            android:id="@+id/buttonPickImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Chọn ảnh"/>
 
         <Button
             android:id="@+id/buttonSaveEmployee"

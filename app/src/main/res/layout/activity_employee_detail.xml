@@ -48,6 +48,14 @@
             android:layout_height="wrap_content"
             android:text="Hình Ảnh: " />
 
+        <ImageView
+            android:id="@+id/imageViewEmployeeDetail"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/images"/>
+
+
         <TextView
             android:id="@+id/textViewEmployeeSdt"
             android:layout_width="wrap_content"

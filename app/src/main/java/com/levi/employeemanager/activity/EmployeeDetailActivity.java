@@ -1,22 +1,33 @@
 package com.levi.employeemanager.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.FileProvider;
 
 import com.levi.employeemanager.R;
 import com.levi.employeemanager.models.EmployeeModel;
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
 
 public class EmployeeDetailActivity extends AppCompatActivity {
 
@@ -28,6 +39,8 @@ public class EmployeeDetailActivity extends AppCompatActivity {
     private TextView textViewEmployeeEmail;
     private Button buttonAddEmployee;
     private Button buttonEditEmployee;
+
+    private ImageView imageViewEmployee;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +55,7 @@ public class EmployeeDetailActivity extends AppCompatActivity {
         textViewEmployeeEmail = findViewById(R.id.textViewEmployeeEmail);
         buttonAddEmployee = findViewById(R.id.buttonAddEmployee);
         buttonEditEmployee = findViewById(R.id.buttonEditEmployee);
+        imageViewEmployee  = findViewById(R.id.imageViewEmployeeDetail);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -93,16 +107,31 @@ public class EmployeeDetailActivity extends AppCompatActivity {
                 textViewEmployeeId.setText("Mã Nhân Viên: " + employee.getId());
                 textViewEmployeeName.setText("Tên Nhân Viên: " + employee.getName());
                 textViewEmployeeDepartment.setText("Phòng Ban: " + employee.getDepartmentId());
-                textViewEmployeeImage.setText("Hình Ảnh: " + employee.getImage());
                 textViewEmployeeSdt.setText("Số Điện Thoại: " + employee.getSdt());
                 textViewEmployeeEmail.setText("Email: " + employee.getEmail());
+
+                setImageFromByteArray(employee.getImage(), imageViewEmployee);
+
+
+
             } else {
                 // Xử lý trường hợp employee là null
             }
         } else {
             // Xử lý trường hợp bundle là null
         }
+
+
     }
+    public static void setImageFromByteArray(byte[] imageData, ImageView imageView) {
+        if (imageData != null && imageData.length > 0) {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
+            imageView.setImageBitmap(bitmap);
+        }
+    }
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

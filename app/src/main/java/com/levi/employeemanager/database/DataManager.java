@@ -10,6 +10,11 @@ import android.database.sqlite.SQLiteDatabase;
 import com.levi.employeemanager.models.DepartmentModel;
 import com.levi.employeemanager.models.EmployeeModel;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,10 +45,9 @@ public class DataManager {
                 @SuppressLint("Range") String id = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_ID));
                 @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME));
                 @SuppressLint("Range") String departmentId = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_DEPARTMENT_ID));
-                @SuppressLint("Range") String image = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_IMAGE));
+                @SuppressLint("Range") byte[] image = cursor.getBlob(cursor.getColumnIndex(DatabaseHelper.COLUMN_IMAGE));
                 @SuppressLint("Range") String sdt = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_SDT));
                 @SuppressLint("Range") String email = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_EMAIL));
-
                 EmployeeModel employee = new EmployeeModel(id, name, departmentId, image, sdt, email);
                 employeeList.add(employee);
             }
