@@ -79,7 +79,7 @@ public class DepartmentListActivity extends AppCompatActivity {
                         // Delete the employee from the database
                         DataManager dataManager = new DataManager(DepartmentListActivity.this);
                         dataManager.open();
-                        dataManager.deleteEmployee(departmentModel.getId());
+                        dataManager.deleteDepartment(departmentModel.getId());
                         dataManager.close();
 
                         // Remove the employee from the list and refresh the adapter
@@ -89,6 +89,7 @@ public class DepartmentListActivity extends AppCompatActivity {
                         // ...
 
                         // Remove the department from the list
+
 
                     }
                 });
