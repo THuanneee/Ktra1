@@ -1,4 +1,4 @@
-package com.levi.employeemanager.activity;// EditEmployeeActivity.java
+package com.levi.employeemanager.activity;
 
 
 import static com.levi.employeemanager.activity.CreateEmployeeActivity.convertImageToByteArray;
@@ -46,7 +46,7 @@ public class EditEmployeeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_employee);
 
-        // Khởi tạo các thành phần giao diện
+
         editTextEmployeeName = findViewById(R.id.editTextEmployeeName);
         editTextDepartmentId = findViewById(R.id.editTextDepartmentId);
         editTextSdt = findViewById(R.id.editTextPhoneNumber);
@@ -60,12 +60,12 @@ public class EditEmployeeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        // Nhận dữ liệu nhân viên từ Intent
+
         Intent intent = getIntent();
         if (intent.hasExtra("employee")) {
             employee = (EmployeeModel) intent.getSerializableExtra("employee");
 
-            // Hiển thị thông tin hiện tại của nhân viên trên giao diện
+
             editTextEmployeeName.setText(employee.getName());
             editTextDepartmentId.setText(employee.getDepartmentId());
             setImageFromByteArray(employee.getImage(), imageViewEmployee);
@@ -77,7 +77,7 @@ public class EditEmployeeActivity extends AppCompatActivity {
 
         }
 
-        // Thiết lập sự kiện khi nhấn nút "Lưu thay đổi"
+
         buttonSaveChanges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,14 +110,14 @@ public class EditEmployeeActivity extends AppCompatActivity {
     }
 
     private void saveChanges() {
-        // Lấy dữ liệu từ các trường EditText
+
         String name = editTextEmployeeName.getText().toString();
         String departmentId = editTextDepartmentId.getText().toString();
 
         String sdt = editTextSdt.getText().toString();
         String email = editTextEmail.getText().toString();
 
-        // Cập nhật thông tin nhân viên
+
         employee.setName(name);
         employee.setDepartmentId(departmentId);
         if(imageUri != null){
@@ -129,13 +129,13 @@ public class EditEmployeeActivity extends AppCompatActivity {
         employee.setSdt(sdt);
         employee.setEmail(email);
 
-        // Cập nhật vào cơ sở dữ liệu
+
         DataManager dataManager = new DataManager(EditEmployeeActivity.this);
         dataManager.open();
         dataManager.updateEmployee(employee);
         dataManager.close();
 
-        // Trở về màn hình trước đó
+
         Intent intent = new Intent(EditEmployeeActivity.this, EmployeeListActivity.class);
         startActivity(intent);
     }
@@ -150,17 +150,17 @@ public class EditEmployeeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == android.R.id.home) {
-            // Xử lý sự kiện khi nút quay lại được nhấn
+
             finish();
             return true;
         }
         else if (itemId == R.id.menu_about) {
-            // Add logic to handle "About" option
+
             startActivity(new Intent(this, AboutActivity.class));
             return true;
         } else if (itemId == R.id.menu_exit) {
-            // Add logic to handle "Exit" option
-            finishAffinity(); // Đóng
+
+            finishAffinity(); 
             return true;
         } else {
             return super.onOptionsItemSelected(item);

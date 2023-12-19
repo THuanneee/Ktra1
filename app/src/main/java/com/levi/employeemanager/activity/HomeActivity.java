@@ -30,21 +30,21 @@ public class HomeActivity extends AppCompatActivity {
         buttonShowEmployeeList = findViewById(R.id.buttonShowEmployeeList);
         buttonShowDepartmentList = findViewById(R.id.buttonShowDepartmentList);
 
-        // Set click listener for "Hiển Thị Danh Sách Nhân Viên" button
+
         buttonShowEmployeeList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Add logic to navigate to the EmployeeListActivity or other relevant screen
+
                 Intent intent = new Intent(HomeActivity.this, EmployeeListActivity.class);
                 startActivity(intent);
             }
         });
 
-        // Set click listener for "Hiển Thị Danh Sách Phòng Ban" button
+
         buttonShowDepartmentList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Add logic to navigate to the DepartmentListActivity or other relevant screen
+
                 Intent intent = new Intent(HomeActivity.this, DepartmentListActivity.class);
                 startActivity(intent);
             }
@@ -62,12 +62,12 @@ public class HomeActivity extends AppCompatActivity {
         int itemId = item.getItemId();
 
         if (itemId == R.id.menu_about) {
-            // Add logic to handle "About" option
+
             startActivity(new Intent(this, AboutActivity.class));
             return true;
         } else if (itemId == R.id.menu_exit) {
-            // Add logic to handle "Exit" option
-            finishAffinity(); // Đóng
+
+            finishAffinity();
             return true;
         } else {
             return super.onOptionsItemSelected(item);

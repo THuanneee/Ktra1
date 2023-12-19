@@ -62,7 +62,7 @@ public class EmployeeDetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        // Set click listener for "Thêm Nhân Viên" button
+
         buttonAddEmployee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,27 +71,27 @@ public class EmployeeDetailActivity extends AppCompatActivity {
             }
         });
 
-        // Set click listener for "Sửa Thông Tin Nhân Viên" button
+
         buttonEditEmployee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Lấy thông tin nhân viên từ intent
+
                 EmployeeModel employee = (EmployeeModel) getIntent().getSerializableExtra("employee");
 
-                // Kiểm tra null trước khi mở màn hình chỉnh sửa
+
                 if (employee != null) {
-                    // Mở EditEmployeeActivity và truyền dữ liệu nhân viên
+
                     Intent intent = new Intent(EmployeeDetailActivity.this, EditEmployeeActivity.class);
                     intent.putExtra("employee", employee);
                     startActivity(intent);
                 } else {
-                    // Xử lý trường hợp employee là null
+
                 }
             }
         });
 
 
-        // Load employee details from intent or other source
+      
         loadEmployeeDetails();
     }
 
@@ -102,7 +102,7 @@ public class EmployeeDetailActivity extends AppCompatActivity {
         if (bundle != null) {
             EmployeeModel employee = (EmployeeModel) bundle.getSerializable("employee");
 
-            // Kiểm tra null trước khi sử dụng dữ liệu
+         
             if (employee != null) {
                 textViewEmployeeId.setText("Mã Nhân Viên: " + employee.getId());
                 textViewEmployeeName.setText("Tên Nhân Viên: " + employee.getName());
@@ -115,10 +115,10 @@ public class EmployeeDetailActivity extends AppCompatActivity {
 
 
             } else {
-                // Xử lý trường hợp employee là null
+
             }
         } else {
-            // Xử lý trường hợp bundle là null
+
         }
 
 
@@ -143,17 +143,17 @@ public class EmployeeDetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == android.R.id.home) {
-            // Xử lý sự kiện khi nút quay lại được nhấn
+
             finish();
             return true;
         }
         else if (itemId == R.id.menu_about) {
-            // Add logic to handle "About" option
+
             startActivity(new Intent(this, AboutActivity.class));
             return true;
         } else if (itemId == R.id.menu_exit) {
-            // Add logic to handle "Exit" option
-            finishAffinity(); // Đóng
+
+            finishAffinity();
             return true;
         } else {
             return super.onOptionsItemSelected(item);

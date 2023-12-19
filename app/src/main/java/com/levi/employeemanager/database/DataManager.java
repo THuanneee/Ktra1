@@ -80,7 +80,7 @@ public class DataManager {
     }
 
 
-    // CRUD operations for Employee
+
     public long addEmployee(EmployeeModel employee) {
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.COLUMN_NAME, employee.getName());
@@ -111,7 +111,7 @@ public class DataManager {
                 new String[]{employeeId});
     }
 
-    // CRUD operations for Department
+
     public long addDepartment(DepartmentModel department) {
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.COLUMN_NAME, department.getName());
@@ -134,5 +134,5 @@ public class DataManager {
                 new String[]{departmentId});
     }
 
-    // Additional methods for querying and fetching data as needed
+
 }
