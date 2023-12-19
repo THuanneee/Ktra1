@@ -58,6 +58,9 @@
         <activity
             android:name=".activity.CreateDepartmentActivity">
         </activity>
+        <activity
+            android:name=".activity.EditDepartmentActivity">
+        </activity>
 
 
 

@@ -1,0 +1,28 @@
+<!-- res/layout/activity_edit_department.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Input field for department name -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tên Phòng Ban"
+        android:textStyle="bold"/>
+    <EditText
+        android:id="@+id/editTextDepartmentName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập tên phòng ban"
+        android:inputType="text"/>
+
+    <!-- Button to save changes -->
+    <Button
+        android:id="@+id/buttonSaveDepartmentChanges"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lưu Thay Đổi"/>
+
+</LinearLayout>

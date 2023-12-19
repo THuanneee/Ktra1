@@ -62,7 +62,7 @@ public class DepartmentDetailActivity extends AppCompatActivity {
                 // Kiểm tra null trước khi mở màn hình chỉnh sửa
                 if (department != null) {
                     // Mở EditEmployeeActivity và truyền dữ liệu nhân viên
-                    Intent intent = new Intent(DepartmentDetailActivity.this, EditDepartment.class);
+                    Intent intent = new Intent(DepartmentDetailActivity.this, EditDepartmentActivity.class);
                     intent.putExtra("department", department);
                     startActivity(intent);
                 } else {
