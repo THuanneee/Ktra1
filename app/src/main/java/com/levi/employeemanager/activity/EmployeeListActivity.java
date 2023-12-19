@@ -245,7 +245,8 @@ public class EmployeeListActivity extends AppCompatActivity {
         int itemId = item.getItemId();
         if (itemId == android.R.id.home) {
             // Xử lý sự kiện khi nút quay lại được nhấn
-            finish();
+            Intent intent = new Intent(EmployeeListActivity.this, HomeActivity.class);
+            startActivity(intent);
             return true;
         }
         else if (itemId == R.id.menu_about) {
