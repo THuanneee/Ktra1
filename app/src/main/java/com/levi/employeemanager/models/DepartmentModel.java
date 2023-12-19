@@ -1,6 +1,8 @@
 package com.levi.employeemanager.models;
 
-public class DepartmentModel {
+import java.io.Serializable;
+
+public class DepartmentModel  implements Serializable {
     String id;
     String name;
 

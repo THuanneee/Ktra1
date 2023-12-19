@@ -29,12 +29,15 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:scrollingCache="false"
+            android:smoothScrollbar="true"
+            android:clickable="true"
             android:divider="@android:color/darker_gray"
             android:dividerHeight="1dp"/>
         <Button
             android:id="@+id/buttonCreateDepartment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tạo Nhân Viên"/>
+            android:text="Tạo Phòng Ban"/>
     </LinearLayout>
 </LinearLayout>
