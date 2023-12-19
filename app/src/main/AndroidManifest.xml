@@ -55,6 +55,11 @@
         <activity
             android:name=".activity.EditEmployeeActivity">
         </activity>
+        <activity
+            android:name=".activity.CreateDepartmentActivity">
+        </activity>
+
+
 
 
     </application>
