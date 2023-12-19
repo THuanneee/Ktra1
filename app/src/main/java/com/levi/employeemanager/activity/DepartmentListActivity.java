@@ -2,6 +2,7 @@ package com.levi.employeemanager.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,7 +20,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.levi.employeemanager.R;
+import com.levi.employeemanager.database.DataManager;
 import com.levi.employeemanager.models.DepartmentModel;
+import com.levi.employeemanager.models.EmployeeModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +37,8 @@ public class DepartmentListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_department_list);
 
+        Button buttonCreateEmployee = findViewById(R.id.buttonCreateDepartment);
+
         ListView listViewDepartments = findViewById(R.id.listViewDepartments);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -41,21 +46,25 @@ public class DepartmentListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+
         // Initialize your data source (departmentList) with actual data
-        departmentList = new ArrayList<>();
+        loadDepartmentData();
 
         // Initialize the adapter with custom layout (list_item_department)
         adapter = new ArrayAdapter<DepartmentModel>(this, R.layout.list_item_department, departmentList) {
             @Override
             public View getView(int position, View convertView, android.view.ViewGroup parent) {
-                View view = super.getView(position, convertView, parent);
+                if (convertView == null) {
+                    LayoutInflater inflater = LayoutInflater.from(getContext());
+                    convertView = inflater.inflate(R.layout.list_item_department, parent, false);
+                }
 
                 // Populate the item view with department data
                 DepartmentModel department = getItem(position);
 
-                TextView textViewDepartmentId = view.findViewById(R.id.textViewDepartmentId);
-                TextView textViewDepartmentName = view.findViewById(R.id.textViewDepartmentName);
-                Button buttonDeleteDepartment = view.findViewById(R.id.buttonDeleteDepartment);
+                TextView textViewDepartmentId = convertView.findViewById(R.id.textViewDepartmentId);
+                TextView textViewDepartmentName = convertView.findViewById(R.id.textViewDepartmentName);
+                Button buttonDeleteDepartment = convertView.findViewById(R.id.buttonDeleteDepartment);
 
                 // Set the data for each view
                 textViewDepartmentId.setText("ID: " + department.getId());
@@ -65,20 +74,26 @@ public class DepartmentListActivity extends AppCompatActivity {
                 buttonDeleteDepartment.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        DepartmentModel departmentModel = getItem(position);
+
+                        // Delete the employee from the database
+                        DataManager dataManager = new DataManager(DepartmentListActivity.this);
+                        dataManager.open();
+                        dataManager.deleteEmployee(departmentModel.getId());
+                        dataManager.close();
+
+                        // Remove the employee from the list and refresh the adapter
+                        remove(departmentModel);
+                        notifyDataSetChanged();
                         // Add logic to delete the department
                         // ...
 
                         // Remove the department from the list
-                        departmentList.remove(department);
 
-                        // Notify the adapter that the data has changed
-                        adapter.notifyDataSetChanged();
-
-                        Toast.makeText(DepartmentListActivity.this, "Đã xóa phòng ban", Toast.LENGTH_SHORT).show();
                     }
                 });
 
-                return view;
+                return convertView;
             }
         };
 
@@ -98,8 +113,31 @@ public class DepartmentListActivity extends AppCompatActivity {
         // Load your actual department data into the departmentList
         // ...
 
+        buttonCreateEmployee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Open CreateEmployeeActivity to create a new employee
+                Intent intent = new Intent(DepartmentListActivity.this, CreateDepartmentActivity.class);
+                startActivity(intent);
+            }
+        });
+
         // Notify the adapter that the data has changed
         adapter.notifyDataSetChanged();
+
+
+    }
+
+    private void loadDepartmentData() {
+        // Initialize DataManager and open the database
+        DataManager dataManager = new DataManager(this);
+        dataManager.open();
+
+        // Load employee data from the database
+        departmentList = dataManager.getAllDepartments();
+
+        // Close the database
+        dataManager.close();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
