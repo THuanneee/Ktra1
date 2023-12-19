@@ -28,16 +28,19 @@ import androidx.appcompat.widget.Toolbar;
 
 
 public class EmployeeListActivity extends AppCompatActivity {
+    private static final int CREATE_EMPLOYEE_REQUEST_CODE = 1;
+
 
     private List<EmployeeModel> employeeList; // Replace with your actual data source
     private ArrayAdapter<EmployeeModel> adapter;
+    ListView listViewEmployees;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_list);
 
-        ListView listViewEmployees = findViewById(R.id.listViewEmployees);
+        listViewEmployees  = findViewById(R.id.listViewEmployees);
         Button buttonCreateEmployee = findViewById(R.id.buttonCreateEmployee);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -122,12 +125,85 @@ public class EmployeeListActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Open CreateEmployeeActivity to create a new employee
                 Intent intent = new Intent(EmployeeListActivity.this, CreateEmployeeActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, CREATE_EMPLOYEE_REQUEST_CODE);
             }
         });
 
         // Load your actual employee data into the employeeList
         // ...
+
+        // Notify the adapter that the data has changed
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == CREATE_EMPLOYEE_REQUEST_CODE && resultCode == RESULT_OK) {
+            // Nếu kết quả là OK, cập nhật danh sách nhân viên
+            updateEmployeeList();
+        }
+    }
+    protected void onResume() {
+        super.onResume();
+        // Cập nhật danh sách nhân viên mỗi khi màn hình quay lại
+        updateEmployeeList();
+    }
+
+    private void updateEmployeeList() {
+
+
+        // Load the updated employee data from the database
+        loadEmployeeData();
+
+        adapter = new ArrayAdapter<EmployeeModel>(this, R.layout.list_item_employee, employeeList) {
+            @Override
+            public View getView(int position, View convertView, android.view.ViewGroup parent) {
+                if (convertView == null) {
+                    LayoutInflater inflater = LayoutInflater.from(getContext());
+                    convertView = inflater.inflate(R.layout.list_item_employee, parent, false);
+                }
+
+                // Populate the item view with employee data
+                EmployeeModel employee = getItem(position);
+
+                ImageView imageViewEmployee = convertView.findViewById(R.id.imageViewEmployee);
+                TextView textViewEmployeeCode = convertView.findViewById(R.id.textViewEmployeeCode);
+                TextView textViewEmployeeName = convertView.findViewById(R.id.textViewEmployeeName);
+                TextView textViewEmployeeDepartment = convertView.findViewById(R.id.textViewEmployeeClassification);
+                Button buttonDeleteEmployee = convertView.findViewById(R.id.buttonDeleteEmployee);
+
+
+                // Set the data for each view
+                // (Assuming you have appropriate methods in EmployeeModel to get the data)
+                // Example:
+                // imageViewEmployee.setImageResource(employee.getImage());
+                textViewEmployeeCode.setText("Mã: " + employee.getId());
+                textViewEmployeeName.setText("Tên: " + employee.getName());
+                textViewEmployeeDepartment.setText("Phòng ban: " + employee.getDepartmentId());
+                buttonDeleteEmployee.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        EmployeeModel selectedEmployee = getItem(position);
+
+                        // Delete the employee from the database
+                        DataManager dataManager = new DataManager(EmployeeListActivity.this);
+                        dataManager.open();
+                        dataManager.deleteEmployee(selectedEmployee.getId());
+                        dataManager.close();
+
+                        // Remove the employee from the list and refresh the adapter
+                        remove(selectedEmployee);
+                        notifyDataSetChanged();
+                    }
+                });
+                return convertView;
+            }
+        };
+
+        // Set the adapter to the ListView
+        listViewEmployees.setAdapter(adapter);
 
         // Notify the adapter that the data has changed
         adapter.notifyDataSetChanged();
