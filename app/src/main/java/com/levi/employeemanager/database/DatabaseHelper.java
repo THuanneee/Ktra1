@@ -8,19 +8,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "comp1any.db";
     private static final int DATABASE_VERSION = 1;
 
-    // Table names
+
     public static final String TABLE_EMPLOYEE = "employee";
     public static final String TABLE_DEPARTMENT = "department";
 
-    // Common column names
+
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_IMAGE = "image";
     public static final String COLUMN_SDT = "sdt";
     public static final String COLUMN_EMAIL = "email";
-    public static final String COLUMN_DEPARTMENT_ID = "department_id"; // New column for employee's department
+    public static final String COLUMN_DEPARTMENT_ID = "department_id";
 
-    // Employee table create statement
+
     private static final String CREATE_TABLE_EMPLOYEE = "CREATE TABLE " + TABLE_EMPLOYEE + "("
             + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COLUMN_NAME + " TEXT,"
@@ -30,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COLUMN_EMAIL + " TEXT"
             + ")";
 
-    // Department table create statement
+
     private static final String CREATE_TABLE_DEPARTMENT = "CREATE TABLE " + TABLE_DEPARTMENT + "("
             + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COLUMN_NAME + " TEXT"
@@ -42,7 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // Creating required tables
+
         db.execSQL(CREATE_TABLE_EMPLOYEE);
         db.execSQL(CREATE_TABLE_DEPARTMENT);
     }

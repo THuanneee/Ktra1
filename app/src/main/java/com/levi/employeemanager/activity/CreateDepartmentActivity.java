@@ -47,7 +47,7 @@ public class CreateDepartmentActivity extends AppCompatActivity {
     }
 
     private void saveDepartment() {
-        // Lấy dữ liệu từ các trường EditText
+
         String name = editTextDepartmentName.getText().toString();
 
 
@@ -56,29 +56,28 @@ public class CreateDepartmentActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        // Tạo một đối tượng EmployeeModel mới với dữ liệu đã nhập
+
         DepartmentModel newEmployee = new DepartmentModel(null, name);
 
-        // Khởi tạo DataManager và mở cơ sở dữ liệu
+
         DataManager dataManager = new DataManager(this);
         dataManager.open();
 
-        // Gọi phương thức thêm nhân viên vào cơ sở dữ liệu
+
         long result = dataManager.addDepartment(newEmployee);
 
-        // Đóng cơ sở dữ liệu và kiểm tra kết quả
+
         dataManager.close();
         if (result != -1) {
-            // Nếu thêm thành công, thực hiện các hành động khác nếu cần
-            // ...
+
             Toast.makeText(this, "Thêm phòng ban thành công", Toast.LENGTH_SHORT).show();
 
-            // Đóng activity sau khi lưu
+
             finish();
         } else {
             Toast.makeText(this, "Lỗi khi thêm phòng ban", Toast.LENGTH_SHORT).show();
 
-            // Hiển thị thông báo lỗi hoặc log lỗi nếu cần
+
         }
     }
     @Override
@@ -92,17 +91,17 @@ public class CreateDepartmentActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == android.R.id.home) {
-            // Xử lý sự kiện khi nút quay lại được nhấn
+
             finish();
             return true;
         }
         else if (itemId == R.id.menu_about) {
-            // Add logic to handle "About" option
+
             startActivity(new Intent(this, AboutActivity.class));
             return true;
         } else if (itemId == R.id.menu_exit) {
-            // Add logic to handle "Exit" option
-            finishAffinity(); // Đóng
+
+            finishAffinity(); 
             return true;
         } else {
             return super.onOptionsItemSelected(item);

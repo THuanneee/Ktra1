@@ -49,7 +49,7 @@ public class AboutActivity extends AppCompatActivity {
         Configuration.getInstance().load(getApplicationContext(), PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
         MapView mapView = findViewById(R.id.mapView);
         IMapController mapController = mapView.getController();
-        GeoPoint startPoint = new GeoPoint(10.738069280747185, 106.67780687036539); // Replace with your desired coordinates
+        GeoPoint startPoint = new GeoPoint(10.738069280747185, 106.67780687036539);
         mapController.setCenter(startPoint);
         mapController.setZoom(18);
         addMarker(mapView, startPoint, "Marker Title", "Marker Description");
@@ -57,8 +57,8 @@ public class AboutActivity extends AppCompatActivity {
         phoneTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Add logic to initiate a phone call
-                String phoneNumber = "tel:" + "YourPhoneNumber"; // Replace with your actual phone number
+
+                String phoneNumber = "tel:" + "YourPhoneNumber";
                 Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse(phoneNumber));
                 startActivity(dialIntent);
             }
@@ -75,17 +75,17 @@ public class AboutActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == android.R.id.home) {
-            // Xử lý sự kiện khi nút quay lại được nhấn
+         
             finish();
             return true;
         }
         else if (itemId == R.id.menu_about) {
-            // Add logic to handle "About" option
+        
 
             return true;
         } else if (itemId == R.id.menu_exit) {
-            // Add logic to handle "Exit" option
-            finishAffinity(); // Đóng
+          
+            finishAffinity();
             return true;
         } else {
             return super.onOptionsItemSelected(item);
@@ -93,16 +93,16 @@ public class AboutActivity extends AppCompatActivity {
     }
 
 private void addMarker(MapView mapView, GeoPoint position, String title, String snippet) {
-        // Create a list to hold the OverlayItems
+     
         ArrayList<OverlayItem> items = new ArrayList<>();
         OverlayItem marker = new OverlayItem(title, snippet, position);
         items.add(marker);
 
-        // Create an ItemizedIconOverlay to display the marker
+
         ItemizedIconOverlay<OverlayItem> overlay = new ItemizedIconOverlay<>(items,
                 getResources().getDrawable(android.R.drawable.star_big_on), null, mapView.getContext());
 
-        // Add the overlay to the map
+
         mapView.getOverlays().add(overlay);
     }
 

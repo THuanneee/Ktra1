@@ -39,7 +39,7 @@ public class EmployeeListActivity extends AppCompatActivity {
     private static final int CREATE_EMPLOYEE_REQUEST_CODE = 1;
 
 
-    private List<EmployeeModel> employeeList; // Replace with your actual data source
+    private List<EmployeeModel> employeeList; 
     private ArrayAdapter<EmployeeModel> adapter;
     ListView listViewEmployees;
 
@@ -56,10 +56,10 @@ public class EmployeeListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
-        // Initialize your data source (employeeList) with actual data
+
         loadEmployeeData();
 
-        // Initialize the adapter with custom layout (list_item_employee)
+
         adapter = new ArrayAdapter<EmployeeModel>(this, R.layout.list_item_employee, employeeList) {
             @Override
             public View getView(int position, View convertView, android.view.ViewGroup parent) {
@@ -68,7 +68,7 @@ public class EmployeeListActivity extends AppCompatActivity {
                     convertView = inflater.inflate(R.layout.list_item_employee, parent, false);
                 }
 
-                // Populate the item view with employee data
+
                 EmployeeModel employee = getItem(position);
 
                 ImageView imageViewEmployee = convertView.findViewById(R.id.imageViewEmployee);
@@ -85,13 +85,13 @@ public class EmployeeListActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         EmployeeModel selectedEmployee = getItem(position);
 
-                        // Delete the employee from the database
+
                         DataManager dataManager = new DataManager(EmployeeListActivity.this);
                         dataManager.open();
                         dataManager.deleteEmployee(selectedEmployee.getId());
                         dataManager.close();
 
-                        // Remove the employee from the list and refresh the adapter
+
                         remove(selectedEmployee);
                         notifyDataSetChanged();
                     }
@@ -100,20 +100,20 @@ public class EmployeeListActivity extends AppCompatActivity {
             }
         };
 
-        // Set the adapter to the ListView
+
         listViewEmployees.setAdapter(adapter);
 
-        // Set click listener for ListView items
+
         listViewEmployees.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("ListViewClick", "Item clicked at position: " + position);
 
                 EmployeeModel selectedEmployee = employeeList.get(position);
-                // Open EmployeeDetailActivity
+
                 Intent intent = new Intent(EmployeeListActivity.this, EmployeeDetailActivity.class);
 
-                // Sử dụng Bundle để truyền dữ liệu
+
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("employee", selectedEmployee);
                 intent.putExtras(bundle);
@@ -122,27 +122,24 @@ public class EmployeeListActivity extends AppCompatActivity {
             }
         });
 
-        // Set click listener for "Tạo Nhân Viên" button
+
         buttonCreateEmployee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Open CreateEmployeeActivity to create a new employee
+
                 Intent intent = new Intent(EmployeeListActivity.this, CreateEmployeeActivity.class);
                 startActivityForResult(intent, CREATE_EMPLOYEE_REQUEST_CODE);
             }
         });
 
-        // Load your actual employee data into the employeeList
-        // ...
 
-        // Notify the adapter that the data has changed
         adapter.notifyDataSetChanged();
     }
     private String getRealPathFromURI(Uri contentUri) {
         String[] projection = {MediaStore.Images.Media.DATA};
         Cursor cursor = getContentResolver().query(contentUri, projection, null, null, null);
         if (cursor == null) {
-            return contentUri.getPath(); // Trả về đường dẫn gốc nếu không thể truy cập thông tin từ MediaStore
+            return contentUri.getPath(); 
         } else {
             int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
             cursor.moveToFirst();
@@ -157,20 +154,20 @@ public class EmployeeListActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == CREATE_EMPLOYEE_REQUEST_CODE && resultCode == RESULT_OK) {
-            // Nếu kết quả là OK, cập nhật danh sách nhân viên
+
             updateEmployeeList();
         }
     }
     protected void onResume() {
         super.onResume();
-        // Cập nhật danh sách nhân viên mỗi khi màn hình quay lại
+
         updateEmployeeList();
     }
 
     private void updateEmployeeList() {
 
 
-        // Load the updated employee data from the database
+
         loadEmployeeData();
 
         adapter = new ArrayAdapter<EmployeeModel>(this, R.layout.list_item_employee, employeeList) {
@@ -181,7 +178,7 @@ public class EmployeeListActivity extends AppCompatActivity {
                     convertView = inflater.inflate(R.layout.list_item_employee, parent, false);
                 }
 
-                // Populate the item view with employee data
+
                 EmployeeModel employee = getItem(position);
 
                 ImageView imageViewEmployee = convertView.findViewById(R.id.imageViewEmployee);
@@ -200,13 +197,13 @@ public class EmployeeListActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         EmployeeModel selectedEmployee = getItem(position);
 
-                        // Delete the employee from the database
+
                         DataManager dataManager = new DataManager(EmployeeListActivity.this);
                         dataManager.open();
                         dataManager.deleteEmployee(selectedEmployee.getId());
                         dataManager.close();
 
-                        // Remove the employee from the list and refresh the adapter
+
                         remove(selectedEmployee);
                         notifyDataSetChanged();
                     }
@@ -215,22 +212,22 @@ public class EmployeeListActivity extends AppCompatActivity {
             }
         };
 
-        // Set the adapter to the ListView
+
         listViewEmployees.setAdapter(adapter);
 
-        // Notify the adapter that the data has changed
+
         adapter.notifyDataSetChanged();
     }
 
     private void loadEmployeeData() {
-        // Initialize DataManager and open the database
+
         DataManager dataManager = new DataManager(this);
         dataManager.open();
 
-        // Load employee data from the database
+
         employeeList = dataManager.getAllEmployees();
 
-        // Close the database
+
         dataManager.close();
     }
     @Override
@@ -244,18 +241,18 @@ public class EmployeeListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == android.R.id.home) {
-            // Xử lý sự kiện khi nút quay lại được nhấn
+
             Intent intent = new Intent(EmployeeListActivity.this, HomeActivity.class);
             startActivity(intent);
             return true;
         }
         else if (itemId == R.id.menu_about) {
-            // Add logic to handle "About" option
+
             startActivity(new Intent(this, AboutActivity.class));
             return true;
         } else if (itemId == R.id.menu_exit) {
-            // Add logic to handle "Exit" option
-            finishAffinity(); // Đóng
+
+            finishAffinity();
             return true;
         } else {
             return super.onOptionsItemSelected(item);
