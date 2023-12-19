@@ -91,7 +91,8 @@ public class EditEmployeeActivity extends AppCompatActivity {
         dataManager.close();
 
         // Trở về màn hình trước đó
-        finish();
+        Intent intent = new Intent(EditEmployeeActivity.this, EmployeeListActivity.class);
+        startActivity(intent);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

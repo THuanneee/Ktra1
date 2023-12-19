@@ -81,7 +81,7 @@ public class CreateEmployeeActivity extends AppCompatActivity {
             // Nếu thêm thành công, thực hiện các hành động khác nếu cần
             // ...
             Toast.makeText(this, "Thêm nhân viên thành công", Toast.LENGTH_SHORT).show();
-
+            setResult(RESULT_OK);
             // Đóng activity sau khi lưu
             finish();
         } else {
