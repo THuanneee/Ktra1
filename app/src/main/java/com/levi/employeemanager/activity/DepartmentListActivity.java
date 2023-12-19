@@ -32,6 +32,7 @@ public class DepartmentListActivity extends AppCompatActivity {
 
     private List<DepartmentModel> departmentList; // Replace with your actual data source
     private ArrayAdapter<DepartmentModel> adapter;
+    ListView listViewDepartments;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,7 +41,7 @@ public class DepartmentListActivity extends AppCompatActivity {
 
         Button buttonCreateEmployee = findViewById(R.id.buttonCreateDepartment);
 
-        ListView listViewDepartments = findViewById(R.id.listViewDepartments);
+         listViewDepartments = findViewById(R.id.listViewDepartments);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -139,6 +140,73 @@ public class DepartmentListActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
 
+    }
+
+    protected void onResume() {
+        super.onResume();
+        // Cập nhật danh sách nhân viên mỗi khi màn hình quay lại
+        updateDepartmentData();
+    }
+
+    private void updateDepartmentData() {
+
+
+        // Load the updated employee data from the database
+        loadDepartmentData();
+
+        adapter = new ArrayAdapter<DepartmentModel>(this, R.layout.list_item_department, departmentList) {
+            @Override
+            public View getView(int position, View convertView, android.view.ViewGroup parent) {
+                if (convertView == null) {
+                    LayoutInflater inflater = LayoutInflater.from(getContext());
+                    convertView = inflater.inflate(R.layout.list_item_department, parent, false);
+                }
+
+                // Populate the item view with department data
+                DepartmentModel department = getItem(position);
+
+                TextView textViewDepartmentId = convertView.findViewById(R.id.textViewDepartmentId);
+                TextView textViewDepartmentName = convertView.findViewById(R.id.textViewDepartmentName);
+                Button buttonDeleteDepartment = convertView.findViewById(R.id.buttonDeleteDepartment);
+
+                // Set the data for each view
+                textViewDepartmentId.setText("ID: " + department.getId());
+                textViewDepartmentName.setText("Tên Phòng Ban: " + department.getName());
+
+                // Set click listener for "Xóa" button
+                buttonDeleteDepartment.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        DepartmentModel departmentModel = getItem(position);
+
+                        // Delete the employee from the database
+                        DataManager dataManager = new DataManager(DepartmentListActivity.this);
+                        dataManager.open();
+                        dataManager.deleteDepartment(departmentModel.getId());
+                        dataManager.close();
+
+                        // Remove the employee from the list and refresh the adapter
+                        remove(departmentModel);
+                        notifyDataSetChanged();
+                        // Add logic to delete the department
+                        // ...
+
+                        // Remove the department from the list
+
+
+                    }
+                });
+
+                return convertView;
+            }
+        };
+
+
+        // Set the adapter to the ListView
+        listViewDepartments.setAdapter(adapter);
+
+        // Notify the adapter that the data has changed
+        adapter.notifyDataSetChanged();
     }
 
     private void loadDepartmentData() {

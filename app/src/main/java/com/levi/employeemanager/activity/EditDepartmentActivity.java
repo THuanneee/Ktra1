@@ -62,6 +62,7 @@ public class EditDepartmentActivity extends AppCompatActivity {
         dataManager.close();
 
         // Trở về màn hình trước đó
-        finish();
+        Intent intent = new Intent(EditDepartmentActivity.this, DepartmentListActivity.class);
+        startActivity(intent);
     }
 }
