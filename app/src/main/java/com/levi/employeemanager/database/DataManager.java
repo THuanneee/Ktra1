@@ -54,6 +54,28 @@ public class DataManager {
         return employeeList;
     }
 
+    public List<DepartmentModel> getAllDepartments() {
+        List<DepartmentModel> departmentList = new ArrayList<>();
+
+        Cursor cursor = database.query(DatabaseHelper.TABLE_DEPARTMENT,
+                null, null, null, null, null, null);
+
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                @SuppressLint("Range") String id = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_ID));
+                @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME));
+
+                DepartmentModel department = new DepartmentModel(id, name);
+                departmentList.add(department);
+            }
+
+            cursor.close();
+        }
+
+        return departmentList;
+    }
+
+
     // CRUD operations for Employee
     public long addEmployee(EmployeeModel employee) {
         ContentValues values = new ContentValues();
