@@ -18,7 +18,7 @@
         android:theme="@style/Theme.AppEmployeeManager"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name="com.stu.employeemanager.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,41 +27,41 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.LoginActivity">
+            android:name="com.stu.employeemanager.activity.LoginActivity">
         </activity>
         <activity
-            android:name=".activity.EmployeeListActivity">
+            android:name="com.stu.employeemanager.activity.EmployeeListActivity">
         </activity>
         <activity
-            android:name=".activity.CreateEmployeeActivity">
+            android:name="com.stu.employeemanager.activity.CreateEmployeeActivity">
         </activity>
         <activity
-            android:name=".activity.DepartmentListActivity">
+            android:name="com.stu.employeemanager.activity.DepartmentListActivity">
         </activity>
         <activity
-            android:name=".activity.EmployeeDetailActivity">
+            android:name="com.stu.employeemanager.activity.EmployeeDetailActivity">
         </activity>
         <activity
-            android:name=".activity.DepartmentDetailActivity">
+            android:name="com.stu.employeemanager.activity.DepartmentDetailActivity">
         </activity>
         <activity
-            android:name=".activity.HomeActivity">
+            android:name="com.stu.employeemanager.activity.HomeActivity">
         </activity>
-        <activity android:name=".activity.AboutActivity"
+        <activity android:name="com.stu.employeemanager.activity.AboutActivity"
             android:label="About"
-            android:parentActivityName=".activity.HomeActivity">
+            android:parentActivityName="com.stu.employeemanager.activity.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.HomeActivity" />
+                android:value="com.stu.employeemanager.activity.HomeActivity" />
         </activity>
         <activity
-            android:name=".activity.EditEmployeeActivity">
+            android:name="com.stu.employeemanager.activity.EditEmployeeActivity">
         </activity>
         <activity
-            android:name=".activity.CreateDepartmentActivity">
+            android:name="com.stu.employeemanager.activity.CreateDepartmentActivity">
         </activity>
         <activity
-            android:name=".activity.EditDepartmentActivity">
+            android:name="com.stu.employeemanager.activity.EditDepartmentActivity">
         </activity>
 
 

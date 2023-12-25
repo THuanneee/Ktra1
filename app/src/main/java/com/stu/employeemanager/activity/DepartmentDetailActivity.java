@@ -1,4 +1,4 @@
-package com.levi.employeemanager.activity;
+package com.stu.employeemanager.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,9 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.levi.employeemanager.R;
-import com.levi.employeemanager.models.DepartmentModel;
-import com.levi.employeemanager.models.EmployeeModel;
+import com.stu.employeemanager.R;
+import com.stu.employeemanager.models.DepartmentModel;
 
 public class DepartmentDetailActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.levi.employeemanager;
+package com.stu.employeemanager;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.levi.employeemanager", appContext.getPackageName());
+        assertEquals("com.stu.employeemanager", appContext.getPackageName());
     }
 }

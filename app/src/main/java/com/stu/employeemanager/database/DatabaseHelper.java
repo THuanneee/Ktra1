@@ -1,13 +1,12 @@
-package com.levi.employeemanager.database;
+package com.stu.employeemanager.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "comp1any.db";
+    private static final String DATABASE_NAME = "company.db";
     private static final int DATABASE_VERSION = 1;
-
 
     public static final String TABLE_EMPLOYEE = "employee";
     public static final String TABLE_DEPARTMENT = "department";
@@ -20,7 +19,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_EMAIL = "email";
     public static final String COLUMN_DEPARTMENT_ID = "department_id";
 
-
     private static final String CREATE_TABLE_EMPLOYEE = "CREATE TABLE " + TABLE_EMPLOYEE + "("
             + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + COLUMN_NAME + " TEXT,"
@@ -29,7 +27,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COLUMN_SDT + " TEXT,"
             + COLUMN_EMAIL + " TEXT"
             + ")";
-
 
     private static final String CREATE_TABLE_DEPARTMENT = "CREATE TABLE " + TABLE_DEPARTMENT + "("
             + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -42,7 +39,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
         db.execSQL(CREATE_TABLE_EMPLOYEE);
         db.execSQL(CREATE_TABLE_DEPARTMENT);
     }

@@ -1,8 +1,7 @@
-package com.levi.employeemanager.activity;
+package com.stu.employeemanager.activity;
 
 
-import static com.levi.employeemanager.activity.CreateEmployeeActivity.convertImageToByteArray;
-import static com.levi.employeemanager.activity.EmployeeDetailActivity.setImageFromByteArray;
+import static com.stu.employeemanager.activity.EmployeeDetailActivity.setImageFromByteArray;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -21,16 +20,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.levi.employeemanager.R;
-import com.levi.employeemanager.database.DataManager;
-import com.levi.employeemanager.models.EmployeeModel;
+import com.stu.employeemanager.R;
+import com.stu.employeemanager.database.DataManager;
+import com.stu.employeemanager.models.EmployeeModel;
 import com.squareup.picasso.Picasso;
 
 public class EditEmployeeActivity extends AppCompatActivity {
 
     private EditText editTextEmployeeName;
     private EditText editTextDepartmentId;
-    private EditText editTextImage;
     private EditText editTextSdt;
     private EditText editTextEmail;
     private Button buttonSaveChanges;
@@ -68,12 +66,14 @@ public class EditEmployeeActivity extends AppCompatActivity {
 
             editTextEmployeeName.setText(employee.getName());
             editTextDepartmentId.setText(employee.getDepartmentId());
+            editTextSdt.setText(employee.getSdt());
+            editTextEmail.setText(employee.getEmail());
+
             setImageFromByteArray(employee.getImage(), imageViewEmployee);
 
 
 
-            editTextSdt.setText(employee.getSdt());
-            editTextEmail.setText(employee.getEmail());
+
 
         }
 
@@ -105,7 +105,6 @@ public class EditEmployeeActivity extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
             imageUri = data.getData();
             Picasso.get().load(imageUri).into(imageViewEmployee);
-
         }
     }
 
@@ -113,21 +112,20 @@ public class EditEmployeeActivity extends AppCompatActivity {
 
         String name = editTextEmployeeName.getText().toString();
         String departmentId = editTextDepartmentId.getText().toString();
-
         String sdt = editTextSdt.getText().toString();
         String email = editTextEmail.getText().toString();
 
 
-        employee.setName(name);
-        employee.setDepartmentId(departmentId);
         if(imageUri != null){
-            byte[] imageData = convertImageToByteArray(imageUri, this);
+            byte[] imageData = CreateEmployeeActivity.convertImageToByteArray(imageUri, this);
             employee.setImage(imageData);
         }
 
 
         employee.setSdt(sdt);
         employee.setEmail(email);
+        employee.setName(name);
+        employee.setDepartmentId(departmentId);
 
 
         DataManager dataManager = new DataManager(EditEmployeeActivity.this);

@@ -1,4 +1,4 @@
-package com.levi.employeemanager.activity;
+package com.stu.employeemanager.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,10 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.levi.employeemanager.R; 
-import com.levi.employeemanager.database.DataManager;
-import com.levi.employeemanager.models.DepartmentModel;
-import com.levi.employeemanager.models.EmployeeModel;
+import com.stu.employeemanager.R; 
+import com.stu.employeemanager.database.DataManager;
+import com.stu.employeemanager.models.DepartmentModel;
 
 public class EditDepartmentActivity extends AppCompatActivity {
 

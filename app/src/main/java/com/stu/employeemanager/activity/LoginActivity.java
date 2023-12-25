@@ -1,4 +1,4 @@
-package com.levi.employeemanager.activity;
+package com.stu.employeemanager.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.levi.employeemanager.R;
+import com.stu.employeemanager.R;
 
 public class LoginActivity extends AppCompatActivity {
 

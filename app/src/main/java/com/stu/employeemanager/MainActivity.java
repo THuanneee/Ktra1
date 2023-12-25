@@ -1,11 +1,12 @@
-package com.levi.employeemanager;
+package com.stu.employeemanager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.levi.employeemanager.activity.LoginActivity;
+import com.stu.employeemanager.R;
+import com.stu.employeemanager.activity.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 

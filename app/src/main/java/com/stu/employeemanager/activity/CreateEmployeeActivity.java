@@ -1,4 +1,4 @@
-package com.levi.employeemanager.activity;
+package com.stu.employeemanager.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -22,9 +22,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.levi.employeemanager.R;
-import com.levi.employeemanager.database.DataManager;
-import com.levi.employeemanager.models.EmployeeModel;
+import com.stu.employeemanager.R;
+import com.stu.employeemanager.database.DataManager;
+import com.stu.employeemanager.models.EmployeeModel;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;

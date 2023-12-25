@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.levi.employeemanager"
+    namespace = "com.stu.employeemanager"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.levi.employeemanager"
+        applicationId = "com.stu.employeemanager"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
