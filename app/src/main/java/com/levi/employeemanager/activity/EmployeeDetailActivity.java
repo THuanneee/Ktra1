@@ -110,6 +110,7 @@ public class EmployeeDetailActivity extends AppCompatActivity {
                 textViewEmployeeSdt.setText("Số Điện Thoại: " + employee.getSdt());
                 textViewEmployeeEmail.setText("Email: " + employee.getEmail());
 
+
                 setImageFromByteArray(employee.getImage(), imageViewEmployee);
 
 

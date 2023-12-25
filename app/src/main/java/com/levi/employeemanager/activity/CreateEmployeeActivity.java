@@ -100,8 +100,11 @@ public class CreateEmployeeActivity extends AppCompatActivity {
 
         String sdt = editTextSdt.getText().toString();
         String email = editTextEmail.getText().toString();
-        byte[] imageData = convertImageToByteArray(imageUri, this);
+        byte[] imageData = new byte[0];
+        if(imageUri != null){
+             imageData = convertImageToByteArray(imageUri, this);
 
+        }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
