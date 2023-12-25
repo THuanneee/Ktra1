@@ -1,7 +1,6 @@
-package com.levi.employeemanager.activity;
+package com.stu.employeemanager.activity;
 
-import static com.levi.employeemanager.activity.CreateEmployeeActivity.convertImageToByteArray;
-import static com.levi.employeemanager.activity.EmployeeDetailActivity.setImageFromByteArray;
+import static com.stu.employeemanager.activity.EmployeeDetailActivity.setImageFromByteArray;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -25,12 +24,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.levi.employeemanager.R;
-import com.levi.employeemanager.database.DataManager;
-import com.levi.employeemanager.models.EmployeeModel;
-import com.squareup.picasso.Picasso;
+import com.stu.employeemanager.R;
+import com.stu.employeemanager.database.DataManager;
+import com.stu.employeemanager.models.EmployeeModel;
 
-import java.io.File;
 import java.util.List;
 import androidx.appcompat.widget.Toolbar;
 
@@ -50,11 +47,13 @@ public class EmployeeListActivity extends AppCompatActivity {
 
         listViewEmployees  = findViewById(R.id.listViewEmployees);
         Button buttonCreateEmployee = findViewById(R.id.buttonCreateEmployee);
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
 
 
         loadEmployeeData();
@@ -76,10 +75,15 @@ public class EmployeeListActivity extends AppCompatActivity {
                 TextView textViewEmployeeName = convertView.findViewById(R.id.textViewEmployeeName);
                 TextView textViewEmployeeDepartment = convertView.findViewById(R.id.textViewEmployeeClassification);
                 Button buttonDeleteEmployee = convertView.findViewById(R.id.buttonDeleteEmployee);
+
+
                 setImageFromByteArray(employee.getImage(), imageViewEmployee);
+
+
                 textViewEmployeeCode.setText("Mã: " + employee.getId());
                 textViewEmployeeName.setText("Tên: " + employee.getName());
                 textViewEmployeeDepartment.setText("Phòng ban: " + employee.getDepartmentId());
+
                 buttonDeleteEmployee.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -134,19 +138,6 @@ public class EmployeeListActivity extends AppCompatActivity {
 
 
         adapter.notifyDataSetChanged();
-    }
-    private String getRealPathFromURI(Uri contentUri) {
-        String[] projection = {MediaStore.Images.Media.DATA};
-        Cursor cursor = getContentResolver().query(contentUri, projection, null, null, null);
-        if (cursor == null) {
-            return contentUri.getPath(); 
-        } else {
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            String path = cursor.getString(column_index);
-            cursor.close();
-            return path;
-        }
     }
 
     @Override
@@ -220,13 +211,10 @@ public class EmployeeListActivity extends AppCompatActivity {
     }
 
     private void loadEmployeeData() {
-
         DataManager dataManager = new DataManager(this);
         dataManager.open();
 
-
         employeeList = dataManager.getAllEmployees();
-
 
         dataManager.close();
     }

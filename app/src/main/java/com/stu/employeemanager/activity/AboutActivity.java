@@ -1,4 +1,4 @@
-package com.levi.employeemanager.activity;
+package com.stu.employeemanager.activity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import com.levi.employeemanager.R;
+import com.stu.employeemanager.R;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,6 +46,7 @@ public class AboutActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+
         Configuration.getInstance().load(getApplicationContext(), PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
         MapView mapView = findViewById(R.id.mapView);
         IMapController mapController = mapView.getController();
@@ -54,11 +55,12 @@ public class AboutActivity extends AppCompatActivity {
         mapController.setZoom(18);
         addMarker(mapView, startPoint, "Marker Title", "Marker Description");
 
+
         phoneTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String phoneNumber = "tel:" + "YourPhoneNumber";
+                String phoneNumber = "tel:" + "0367183161";
                 Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse(phoneNumber));
                 startActivity(dialIntent);
             }

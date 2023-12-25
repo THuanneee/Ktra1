@@ -1,4 +1,4 @@
-package com.levi.employeemanager.database;
+package com.stu.employeemanager.database;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
@@ -7,16 +7,12 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.levi.employeemanager.models.DepartmentModel;
-import com.levi.employeemanager.models.EmployeeModel;
+import com.stu.employeemanager.models.DepartmentModel;
+import com.stu.employeemanager.models.EmployeeModel;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class DataManager {
     private SQLiteDatabase database;

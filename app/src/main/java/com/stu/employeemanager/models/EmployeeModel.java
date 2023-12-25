@@ -1,4 +1,4 @@
-package com.levi.employeemanager.models;
+package com.stu.employeemanager.models;
 
 import java.io.Serializable;
 

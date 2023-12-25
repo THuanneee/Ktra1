@@ -1,4 +1,4 @@
-package com.levi.employeemanager.activity;
+package com.stu.employeemanager.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,19 +13,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.levi.employeemanager.R;
-import com.levi.employeemanager.database.DataManager;
-import com.levi.employeemanager.models.DepartmentModel;
-import com.levi.employeemanager.models.EmployeeModel;
+import com.stu.employeemanager.R;
+import com.stu.employeemanager.database.DataManager;
+import com.stu.employeemanager.models.DepartmentModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DepartmentListActivity extends AppCompatActivity {

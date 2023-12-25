@@ -1,14 +1,9 @@
-package com.levi.employeemanager.activity;
+package com.stu.employeemanager.activity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,13 +16,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.FileProvider;
 
-import com.levi.employeemanager.R;
-import com.levi.employeemanager.models.EmployeeModel;
-import com.squareup.picasso.Picasso;
-
-import java.io.File;
+import com.stu.employeemanager.R;
+import com.stu.employeemanager.models.EmployeeModel;
 
 public class EmployeeDetailActivity extends AppCompatActivity {
 
@@ -59,6 +50,7 @@ public class EmployeeDetailActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 

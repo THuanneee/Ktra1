@@ -1,4 +1,4 @@
-package com.levi.employeemanager;
+package com.stu.employeemanager;
 
 import org.junit.Test;
 
