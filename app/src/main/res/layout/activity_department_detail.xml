@@ -1,21 +1,21 @@
 <!-- res/layout/activity_department_detail.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <!-- AppBar / Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        app:title="Chi tiết phòng ban"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:theme="?attr/actionBarTheme"
-        android:popupTheme="?attr/actionBarPopupTheme"
         android:contentInsetStart="0dp"
-        android:contentInsetLeft="0dp"/>
+        android:contentInsetLeft="0dp"
+        android:popupTheme="?attr/actionBarPopupTheme"
+        android:theme="?attr/actionBarTheme"
+        app:title="Chi tiết đơn vị" />
 
     <!-- Content View -->
     <LinearLayout
@@ -34,18 +34,48 @@
             android:id="@+id/textViewDepartmentName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tên Phòng Ban: " />
+            android:text="Tên đơn vị: " />
+
+        <TextView
+            android:id="@+id/textViewDepartmentemail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="email: " />
+
+        <TextView
+            android:id="@+id/textViewDepartmentweb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="website: " />
+
+        <TextView
+            android:id="@+id/textViewDepartmentdiachi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="địa chỉ: " />
+
+        <TextView
+            android:id="@+id/textViewDepartmentsdt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sdt: " />
+
+        <TextView
+            android:id="@+id/textViewDepartmentmadonvicha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mã đơn vị cha: " />
 
         <Button
             android:id="@+id/buttonAddEmployee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Thêm Phòng ban" />
+            android:text="Thêm đơn vị" />
 
-        <Button
-            android:id="@+id/buttonEditDepartment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sửa Thông Tin Phòng Ban" />
+        <!--        <Button-->
+        <!--            android:id="@+id/buttonEditDepartment"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Sửa Thông Tin đơn vị" />-->
     </LinearLayout>
 </LinearLayout>

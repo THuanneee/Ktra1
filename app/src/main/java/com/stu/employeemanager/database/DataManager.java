@@ -44,7 +44,9 @@ public class DataManager {
                 @SuppressLint("Range") byte[] image = cursor.getBlob(cursor.getColumnIndex(DatabaseHelper.COLUMN_IMAGE));
                 @SuppressLint("Range") String sdt = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_SDT));
                 @SuppressLint("Range") String email = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_EMAIL));
-                EmployeeModel employee = new EmployeeModel(id, name, departmentId, image, sdt, email);
+                @SuppressLint("Range") String chucvu = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_chucvu));
+
+                EmployeeModel employee = new EmployeeModel(id, name, departmentId, image, sdt, email, chucvu);
                 employeeList.add(employee);
             }
 
@@ -64,8 +66,15 @@ public class DataManager {
             while (cursor.moveToNext()) {
                 @SuppressLint("Range") String id = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_ID));
                 @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_NAME));
+                @SuppressLint("Range") String COLUMN_email = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_email));
+                @SuppressLint("Range") String COLUMN_web = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_web));
+                @SuppressLint("Range") String COLUMN_logo = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_logo));
+                @SuppressLint("Range") String COLUMN_diachi = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_diachi));
+                @SuppressLint("Range") String COLUMN_sdt = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_sdt));
+                @SuppressLint("Range") String COLUMN_madonvicha = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_madonvicha));
 
-                DepartmentModel department = new DepartmentModel(id, name);
+
+                DepartmentModel department = new DepartmentModel(id, name, COLUMN_email, COLUMN_web, "", COLUMN_diachi, COLUMN_sdt, COLUMN_madonvicha);
                 departmentList.add(department);
             }
 
@@ -74,7 +83,6 @@ public class DataManager {
 
         return departmentList;
     }
-
 
 
     public long addEmployee(EmployeeModel employee) {

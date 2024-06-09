@@ -34,13 +34,19 @@
             android:id="@+id/editTextDepartmentId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="ID Phòng Ban"/>
+            android:hint="ID đơn vị"/>
 
         <EditText
             android:id="@+id/editTextSdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Số Điện Thoại"/>
+
+        <EditText
+            android:id="@+id/editTextChucVu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Chức vụ"/>
 
         <EditText
             android:id="@+id/editTextEmail"

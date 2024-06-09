@@ -17,6 +17,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_IMAGE = "image";
     public static final String COLUMN_SDT = "sdt";
     public static final String COLUMN_EMAIL = "email";
+    public static final String COLUMN_chucvu = "chucvu";
+
+
+    public static final String COLUMN_email = "email";
+    public static final String COLUMN_web = "web";
+    public static final String COLUMN_logo = "logo";
+    public static final String COLUMN_diachi = "diachi";
+    public static final String COLUMN_sdt = "sdt";
+    public static final String COLUMN_madonvicha = "madonvicha";
+
+
     public static final String COLUMN_DEPARTMENT_ID = "department_id";
 
     private static final String CREATE_TABLE_EMPLOYEE = "CREATE TABLE " + TABLE_EMPLOYEE + "("
@@ -25,12 +36,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COLUMN_DEPARTMENT_ID + " TEXT,"
             + COLUMN_IMAGE + " BLOB,"
             + COLUMN_SDT + " TEXT,"
-            + COLUMN_EMAIL + " TEXT"
+            + COLUMN_EMAIL + " TEXT,"
+            + COLUMN_chucvu + " TEXT"
             + ")";
 
     private static final String CREATE_TABLE_DEPARTMENT = "CREATE TABLE " + TABLE_DEPARTMENT + "("
             + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + COLUMN_NAME + " TEXT"
+            + COLUMN_NAME + " TEXT,"
+            + COLUMN_email + " TEXT,"
+            + COLUMN_web + " TEXT,"
+            + COLUMN_logo + " TEXT,"
+            + COLUMN_diachi + " TEXT,"
+            + COLUMN_sdt + " TEXT,"
+            + COLUMN_madonvicha + " TEXT"
             + ")";
 
     public DatabaseHelper(Context context) {

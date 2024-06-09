@@ -26,6 +26,10 @@ public class EmployeeDetailActivity extends AppCompatActivity {
     private TextView textViewEmployeeName;
     private TextView textViewEmployeeDepartment;
     private TextView textViewEmployeeImage;
+
+    private TextView textViewEmployeeChucvu;
+
+
     private TextView textViewEmployeeSdt;
     private TextView textViewEmployeeEmail;
     private Button buttonAddEmployee;
@@ -43,10 +47,11 @@ public class EmployeeDetailActivity extends AppCompatActivity {
         textViewEmployeeDepartment = findViewById(R.id.textViewEmployeeDepartment);
         textViewEmployeeImage = findViewById(R.id.textViewEmployeeImage);
         textViewEmployeeSdt = findViewById(R.id.textViewEmployeeSdt);
+        textViewEmployeeChucvu = findViewById(R.id.textViewEmployeeChucvu);
         textViewEmployeeEmail = findViewById(R.id.textViewEmployeeEmail);
         buttonAddEmployee = findViewById(R.id.buttonAddEmployee);
-        buttonEditEmployee = findViewById(R.id.buttonEditEmployee);
-        imageViewEmployee  = findViewById(R.id.imageViewEmployeeDetail);
+//        buttonEditEmployee = findViewById(R.id.buttonEditEmployee);
+        imageViewEmployee = findViewById(R.id.imageViewEmployeeDetail);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -83,7 +88,6 @@ public class EmployeeDetailActivity extends AppCompatActivity {
         });
 
 
-      
         loadEmployeeDetails();
     }
 
@@ -94,17 +98,17 @@ public class EmployeeDetailActivity extends AppCompatActivity {
         if (bundle != null) {
             EmployeeModel employee = (EmployeeModel) bundle.getSerializable("employee");
 
-         
+
             if (employee != null) {
                 textViewEmployeeId.setText("Mã Nhân Viên: " + employee.getId());
                 textViewEmployeeName.setText("Tên Nhân Viên: " + employee.getName());
-                textViewEmployeeDepartment.setText("Phòng Ban: " + employee.getDepartmentId());
+                textViewEmployeeDepartment.setText("đơn vị: " + employee.getDepartmentId());
                 textViewEmployeeSdt.setText("Số Điện Thoại: " + employee.getSdt());
+                textViewEmployeeSdt.setText("Chức vụ: " + employee.getChucvu());
                 textViewEmployeeEmail.setText("Email: " + employee.getEmail());
 
 
                 setImageFromByteArray(employee.getImage(), imageViewEmployee);
-
 
 
             } else {
@@ -116,13 +120,13 @@ public class EmployeeDetailActivity extends AppCompatActivity {
 
 
     }
+
     public static void setImageFromByteArray(byte[] imageData, ImageView imageView) {
         if (imageData != null && imageData.length > 0) {
             Bitmap bitmap = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
             imageView.setImageBitmap(bitmap);
         }
     }
-
 
 
     @Override
@@ -139,8 +143,7 @@ public class EmployeeDetailActivity extends AppCompatActivity {
 
             finish();
             return true;
-        }
-        else if (itemId == R.id.menu_about) {
+        } else if (itemId == R.id.menu_about) {
 
             startActivity(new Intent(this, AboutActivity.class));
             return true;

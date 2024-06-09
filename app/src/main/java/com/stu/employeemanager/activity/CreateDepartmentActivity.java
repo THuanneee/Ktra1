@@ -22,6 +22,12 @@ import com.stu.employeemanager.models.DepartmentModel;
 public class CreateDepartmentActivity extends AppCompatActivity {
 
     private EditText editTextDepartmentName;
+    private EditText editTextDepartmentEmail;
+    private EditText editTextDepartmentDiachi;
+    private EditText editTextDepartmentsdt;
+    private EditText editTextDepartmentWeb;
+    private EditText editTextDepartmentmadonvicha;
+
     private Button buttonSaveDepartment;
 
     @Override
@@ -30,6 +36,12 @@ public class CreateDepartmentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_department);
 
         editTextDepartmentName = findViewById(R.id.editTextDepartmentName);
+        editTextDepartmentEmail = findViewById(R.id.editTextDepartmentEmail);
+        editTextDepartmentDiachi = findViewById(R.id.editTextDepartmentDiachi);
+        editTextDepartmentsdt = findViewById(R.id.editTextDepartmentsdt);
+        editTextDepartmentWeb = findViewById(R.id.editTextDepartmentWeb);
+        editTextDepartmentmadonvicha = findViewById(R.id.editTextDepartmentmadonvicha);
+
 
         buttonSaveDepartment = findViewById(R.id.buttonSaveDepartment);
 
@@ -47,7 +59,13 @@ public class CreateDepartmentActivity extends AppCompatActivity {
 
     private void saveDepartment() {
 
+
         String name = editTextDepartmentName.getText().toString();
+        String name1 = editTextDepartmentEmail.getText().toString();
+        String name2 = editTextDepartmentDiachi.getText().toString();
+        String name3 = editTextDepartmentsdt.getText().toString();
+        String name4 = editTextDepartmentWeb.getText().toString();
+        String name5 = editTextDepartmentmadonvicha.getText().toString();
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -56,7 +74,7 @@ public class CreateDepartmentActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
-        DepartmentModel newEmployee = new DepartmentModel(null, name);
+        DepartmentModel newEmployee = new DepartmentModel(null, name, name1, name4, "", name2, name3, name5);
 
 
         DataManager dataManager = new DataManager(this);
@@ -69,16 +87,17 @@ public class CreateDepartmentActivity extends AppCompatActivity {
         dataManager.close();
         if (result != -1) {
 
-            Toast.makeText(this, "Thêm phòng ban thành công", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Thêm đơn vị thành công", Toast.LENGTH_SHORT).show();
 
 
             finish();
         } else {
-            Toast.makeText(this, "Lỗi khi thêm phòng ban", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Lỗi khi thêm đơn vị", Toast.LENGTH_SHORT).show();
 
 
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -93,14 +112,13 @@ public class CreateDepartmentActivity extends AppCompatActivity {
 
             finish();
             return true;
-        }
-        else if (itemId == R.id.menu_about) {
+        } else if (itemId == R.id.menu_about) {
 
             startActivity(new Intent(this, AboutActivity.class));
             return true;
         } else if (itemId == R.id.menu_exit) {
 
-            finishAffinity(); 
+            finishAffinity();
             return true;
         } else {
             return super.onOptionsItemSelected(item);

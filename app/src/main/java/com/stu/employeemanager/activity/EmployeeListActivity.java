@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,6 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,8 +29,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.stu.employeemanager.R;
 import com.stu.employeemanager.database.DataManager;
+import com.stu.employeemanager.models.DepartmentModel;
 import com.stu.employeemanager.models.EmployeeModel;
 
+import java.util.ArrayList;
 import java.util.List;
 import androidx.appcompat.widget.Toolbar;
 
@@ -39,6 +44,7 @@ public class EmployeeListActivity extends AppCompatActivity {
     private List<EmployeeModel> employeeList; 
     private ArrayAdapter<EmployeeModel> adapter;
     ListView listViewEmployees;
+    private EditText editTextSearch;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,7 +53,7 @@ public class EmployeeListActivity extends AppCompatActivity {
 
         listViewEmployees  = findViewById(R.id.listViewEmployees);
         Button buttonCreateEmployee = findViewById(R.id.buttonCreateEmployee);
-
+        editTextSearch = findViewById(R.id.editTextSearch123);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -57,6 +63,24 @@ public class EmployeeListActivity extends AppCompatActivity {
 
 
         loadEmployeeData();
+
+        editTextSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // No action needed
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                filter(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // No action needed
+            }
+        });
+
 
 
         adapter = new ArrayAdapter<EmployeeModel>(this, R.layout.list_item_employee, employeeList) {
@@ -82,7 +106,7 @@ public class EmployeeListActivity extends AppCompatActivity {
 
                 textViewEmployeeCode.setText("Mã: " + employee.getId());
                 textViewEmployeeName.setText("Tên: " + employee.getName());
-                textViewEmployeeDepartment.setText("Phòng ban: " + employee.getDepartmentId());
+                textViewEmployeeDepartment.setText("đơn vị: " + employee.getDepartmentId());
 
                 buttonDeleteEmployee.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -182,7 +206,7 @@ public class EmployeeListActivity extends AppCompatActivity {
 
                 textViewEmployeeCode.setText("Mã: " + employee.getId());
                 textViewEmployeeName.setText("Tên: " + employee.getName());
-                textViewEmployeeDepartment.setText("Phòng ban: " + employee.getDepartmentId());
+                textViewEmployeeDepartment.setText("đơn vị: " + employee.getDepartmentId());
                 buttonDeleteEmployee.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -245,5 +269,69 @@ public class EmployeeListActivity extends AppCompatActivity {
         } else {
             return super.onOptionsItemSelected(item);
         }
+    }
+    private void filter(String text) {
+        if (text.isEmpty()) {
+            updateEmployeeList();
+            return;
+        }
+        Log.d("filter", "levi -filter: " + text);
+
+        List<EmployeeModel> a = new ArrayList<>();
+        for (EmployeeModel item : employeeList) {
+            if (item.getName().toLowerCase().contains(text.toLowerCase())) {
+                a.add(item);
+            }
+        }
+
+
+        employeeList = a;
+        adapter = new ArrayAdapter<EmployeeModel>(this, R.layout.list_item_employee, employeeList) {
+            @Override
+            public View getView(int position, View convertView, android.view.ViewGroup parent) {
+                if (convertView == null) {
+                    LayoutInflater inflater = LayoutInflater.from(getContext());
+                    convertView = inflater.inflate(R.layout.list_item_employee, parent, false);
+                }
+
+
+                EmployeeModel employee = getItem(position);
+
+                ImageView imageViewEmployee = convertView.findViewById(R.id.imageViewEmployee);
+                TextView textViewEmployeeCode = convertView.findViewById(R.id.textViewEmployeeCode);
+                TextView textViewEmployeeName = convertView.findViewById(R.id.textViewEmployeeName);
+                TextView textViewEmployeeDepartment = convertView.findViewById(R.id.textViewEmployeeClassification);
+                Button buttonDeleteEmployee = convertView.findViewById(R.id.buttonDeleteEmployee);
+
+                setImageFromByteArray(employee.getImage(), imageViewEmployee);
+
+                textViewEmployeeCode.setText("Mã: " + employee.getId());
+                textViewEmployeeName.setText("Tên: " + employee.getName());
+                textViewEmployeeDepartment.setText("đơn vị: " + employee.getDepartmentId());
+                buttonDeleteEmployee.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        EmployeeModel selectedEmployee = getItem(position);
+
+
+                        DataManager dataManager = new DataManager(EmployeeListActivity.this);
+                        dataManager.open();
+                        dataManager.deleteEmployee(selectedEmployee.getId());
+                        dataManager.close();
+
+
+                        remove(selectedEmployee);
+                        notifyDataSetChanged();
+                    }
+                });
+                return convertView;
+            }
+        };
+
+
+        listViewEmployees.setAdapter(adapter);
+
+
+        adapter.notifyDataSetChanged();
     }
 }

@@ -8,7 +8,7 @@
     <!-- AppBar / Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        app:title="Danh sách phòng ban"
+        app:title="Danh sách đơn vị"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
@@ -16,6 +16,17 @@
         android:popupTheme="?attr/actionBarPopupTheme"
         android:contentInsetStart="0dp"
         android:contentInsetLeft="0dp"/>
+
+    <EditText
+        android:id="@+id/editTextSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search here"
+        android:padding="16dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:drawableStart="@android:drawable/ic_menu_search"
+        android:drawablePadding="8dp"
+        android:inputType="text" />
 
     <!-- Content View -->
     <LinearLayout
@@ -38,6 +49,6 @@
             android:id="@+id/buttonCreateDepartment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tạo Phòng Ban"/>
+            android:text="Tạo đơn vị"/>
     </LinearLayout>
 </LinearLayout>

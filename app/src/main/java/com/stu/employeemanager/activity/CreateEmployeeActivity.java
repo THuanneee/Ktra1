@@ -37,6 +37,7 @@ public class CreateEmployeeActivity extends AppCompatActivity {
     private EditText editTextDepartmentId;
     private EditText editTextSdt;
     private EditText editTextEmail;
+    private EditText editTextchucvu;
     private Button buttonSaveEmployee;
 
     private static final int PICK_IMAGE_REQUEST = 1;
@@ -51,6 +52,8 @@ public class CreateEmployeeActivity extends AppCompatActivity {
         editTextEmployeeName = findViewById(R.id.editTextEmployeeName);
         editTextDepartmentId = findViewById(R.id.editTextDepartmentId);
         editTextSdt = findViewById(R.id.editTextSdt);
+        editTextchucvu = findViewById(R.id.editTextChucVu);
+
         editTextEmail = findViewById(R.id.editTextEmail);
         buttonSaveEmployee = findViewById(R.id.buttonSaveEmployee);
 
@@ -99,10 +102,11 @@ public class CreateEmployeeActivity extends AppCompatActivity {
         String departmentId = editTextDepartmentId.getText().toString();
 
         String sdt = editTextSdt.getText().toString();
+        String chucvu = editTextchucvu.getText().toString();
         String email = editTextEmail.getText().toString();
         byte[] imageData = new byte[0];
-        if(imageUri != null){
-             imageData = convertImageToByteArray(imageUri, this);
+        if (imageUri != null) {
+            imageData = convertImageToByteArray(imageUri, this);
 
         }
 
@@ -112,7 +116,7 @@ public class CreateEmployeeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
-        EmployeeModel newEmployee = new EmployeeModel(null, name, departmentId, imageData, sdt, email);
+        EmployeeModel newEmployee = new EmployeeModel(null, name, departmentId, imageData, sdt, email, chucvu);
 
 
         DataManager dataManager = new DataManager(this);
@@ -149,6 +153,7 @@ public class CreateEmployeeActivity extends AppCompatActivity {
             return null;
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -163,14 +168,13 @@ public class CreateEmployeeActivity extends AppCompatActivity {
 
             finish();
             return true;
-        }
-        else if (itemId == R.id.menu_about) {
+        } else if (itemId == R.id.menu_about) {
 
             startActivity(new Intent(this, AboutActivity.class));
             return true;
         } else if (itemId == R.id.menu_exit) {
 
-            finishAffinity(); 
+            finishAffinity();
             return true;
         } else {
             return super.onOptionsItemSelected(item);

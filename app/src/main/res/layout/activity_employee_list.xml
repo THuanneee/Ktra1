@@ -15,6 +15,17 @@
         app:title="Danh sách nhân viên"
         android:popupTheme="?attr/actionBarPopupTheme"/>
 
+    <EditText
+        android:id="@+id/editTextSearch123"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search here"
+        android:padding="16dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:drawableStart="@android:drawable/ic_menu_search"
+        android:drawablePadding="8dp"
+        android:inputType="text" />
+
     <!-- Content View -->
     <LinearLayout
         android:layout_width="match_parent"

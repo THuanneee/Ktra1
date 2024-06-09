@@ -21,6 +21,14 @@ public class DepartmentDetailActivity extends AppCompatActivity {
 
     private TextView textViewDepartmentId;
     private TextView textViewDepartmentName;
+
+    private TextView textViewDepartmentmadonvicha;
+    private TextView textViewDepartmentweb;
+    private TextView textViewDepartmentsdt;
+    private TextView textViewDepartmentdiachi;
+    private TextView textViewDepartmentemail;
+
+
     private Button buttonAddEmployee;
     private Button buttonEditDepartment;
 
@@ -31,8 +39,14 @@ public class DepartmentDetailActivity extends AppCompatActivity {
 
         textViewDepartmentId = findViewById(R.id.textViewDepartmentId);
         textViewDepartmentName = findViewById(R.id.textViewDepartmentName);
+        textViewDepartmentemail = findViewById(R.id.textViewDepartmentemail);
+        textViewDepartmentdiachi = findViewById(R.id.textViewDepartmentdiachi);
+        textViewDepartmentsdt = findViewById(R.id.textViewDepartmentsdt);
+        textViewDepartmentweb = findViewById(R.id.textViewDepartmentweb);
+        textViewDepartmentmadonvicha = findViewById(R.id.textViewDepartmentmadonvicha);
+
         buttonAddEmployee = findViewById(R.id.buttonAddEmployee);
-        buttonEditDepartment = findViewById(R.id.buttonEditDepartment);
+//        buttonEditDepartment = findViewById(R.id.buttonEditDepartment);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -73,7 +87,6 @@ public class DepartmentDetailActivity extends AppCompatActivity {
     }
 
 
-
     private void loadDepartmentDetails() {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -84,7 +97,12 @@ public class DepartmentDetailActivity extends AppCompatActivity {
 
             if (department != null) {
                 textViewDepartmentId.setText("ID: " + department.getId());
-                textViewDepartmentName.setText("Tên Phòng Ban: " + department.getName());
+                textViewDepartmentName.setText("Tên đơn vị: " + department.getName());
+                textViewDepartmentName.setText("email: " + department.getEmail());
+                textViewDepartmentName.setText("web: " + department.getWeb());
+                textViewDepartmentName.setText("địa chỉ: " + department.getDiachi());
+                textViewDepartmentName.setText("sdt: " + department.getSdt());
+                textViewDepartmentName.setText("mã đơn vị cha: " + department.getMadonvicha());
 
             } else {
 
@@ -93,6 +111,7 @@ public class DepartmentDetailActivity extends AppCompatActivity {
 
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -107,8 +126,7 @@ public class DepartmentDetailActivity extends AppCompatActivity {
 
             finish();
             return true;
-        }
-        else if (itemId == R.id.menu_about) {
+        } else if (itemId == R.id.menu_about) {
 
             startActivity(new Intent(this, AboutActivity.class));
             return true;

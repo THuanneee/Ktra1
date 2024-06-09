@@ -37,10 +37,16 @@
             android:text="Tên Nhân Viên: " />
 
         <TextView
+            android:id="@+id/textViewEmployeeChucvu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="chức vụ: " />
+
+        <TextView
             android:id="@+id/textViewEmployeeDepartment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Phòng Ban: " />
+            android:text="Đơn vị: " />
 
         <TextView
             android:id="@+id/textViewEmployeeImage"
@@ -74,10 +80,10 @@
             android:layout_height="wrap_content"
             android:text="Thêm Nhân Viên" />
 
-        <Button
-            android:id="@+id/buttonEditEmployee"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sửa Thông Tin Nhân Viên" />
+<!--        <Button-->
+<!--            android:id="@+id/buttonEditEmployee"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Sửa Thông Tin Nhân Viên" />-->
     </LinearLayout>
 </LinearLayout>

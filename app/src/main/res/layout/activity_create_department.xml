@@ -1,8 +1,8 @@
 <!-- res/layout/activity_create_employee.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <!-- AppBar / Toolbar -->
@@ -11,11 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        app:title="Tạo phòng ban"
-        android:theme="?attr/actionBarTheme"
-        android:popupTheme="?attr/actionBarPopupTheme"
         android:contentInsetStart="0dp"
-        android:contentInsetLeft="0dp"/>
+        android:contentInsetLeft="0dp"
+        android:popupTheme="?attr/actionBarPopupTheme"
+        android:theme="?attr/actionBarTheme"
+        app:title="Tạo đơn vị" />
 
     <!-- Content View -->
     <LinearLayout
@@ -28,12 +28,44 @@
             android:id="@+id/editTextDepartmentName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Tên Phòng Ban"/>
+            android:hint="Tên đơn vị" />
+
+
+        <EditText
+            android:id="@+id/editTextDepartmentEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="email" />
+
+        <EditText
+            android:id="@+id/editTextDepartmentWeb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="website" />
+
+        <EditText
+            android:id="@+id/editTextDepartmentDiachi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="địa chỉ" />
+
+        <EditText
+            android:id="@+id/editTextDepartmentsdt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="số điện thoai" />
+
+        <EditText
+            android:id="@+id/editTextDepartmentmadonvicha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="mã đơn vị cha" />
+
 
         <Button
             android:id="@+id/buttonSaveDepartment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Lưu Phòng Ban Viên"/>
+            android:text="Lưu đơn vị" />
     </LinearLayout>
 </LinearLayout>

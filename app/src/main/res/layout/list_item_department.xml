@@ -28,7 +28,7 @@
             android:id="@+id/textViewDepartmentName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tên Phòng Ban: "
+            android:text="Tên đơn vị: "
             android:textStyle="bold"
             android:layout_marginEnd="8dp"/>
     </LinearLayout>
